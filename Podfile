@@ -1,0 +1,16 @@
+platform:ios, '8.0'
+target 'yuanmaiDriver' do
+pod 'AFNetworking','~>3.0'
+pod 'FMDB', '~>2.6.2'
+pod 'Masonry', '~> 0.6.2'
+pod 'SDWebImage', '~> 3.7.2'
+pod 'MBProgressHUD', '~> 0.9.1'
+pod 'MJExtension', '~> 2.5.3'
+pod 'MJRefresh', '~> 3.0.6'
+pod 'SDCycleScrollView','~>1.65'
+pod 'libqrencode', '~> 3.4.2'
+pod 'ZBarSDK','~>1.3.1'
+pod 'JSONModel', '~>1.0.2'
+pod 'JKCountDownButton', '~>1.0.0'
+pod 'UMengSocial', '~> 4.3'
+end
