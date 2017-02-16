@@ -26,7 +26,7 @@
 @end
 
 @interface UIImageView (QuickControl)
-//快速创建imageView
+//快速创建imageView 
 +(id)imageViewWithFrame:(CGRect)frame
                   image:(NSString *)image;
 @end

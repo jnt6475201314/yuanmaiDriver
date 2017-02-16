@@ -414,4 +414,9 @@
     
 }
 
+- (void)configLocation
+{
+    NSLog(@"未登录，不发送地址信息");
+}
+
 @end
