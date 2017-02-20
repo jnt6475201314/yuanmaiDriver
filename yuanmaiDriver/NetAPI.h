@@ -14,17 +14,17 @@
 #define GETTOKEN_Str [UserDefaults objectForKey:@"token_str"]
 #define GETDeviceToken [UserDefaults objectForKey:@"deviceToken"]
 
-#if 0   // 测试时使用的
-#define CommonHeadUrl @"http://139.196.29.1/Admin/"
+#if 1   // 测试时使用的
+#define CommonHeadUrl @"http://139.196.29.1/test/Admin/"
 #endif
 
-#if 1   // 上线时使用的
+#if 0   // 上线时使用的
 #define CommonHeadUrl @"http://202.91.248.43/Admin/"
 #endif
 
 #define CHECK_TokenStr_UrlStr [NSString stringWithFormat:@"%@Appdriver/verify", CommonHeadUrl]  // 检查异地登录
 
-#define guideCommonHeadUrl @"http://139.196.29.1/"
+#define guideCommonHeadUrl @"http://139.196.29.1/test/"
 #define API_GETGUIDANCEIMAGE_URL [NSString stringWithFormat:@"%@/Admin/Applineorder/guideImage", guideCommonHeadUrl]     // 引导页图片
 #define API_guideheadImageUrl [NSString stringWithFormat:@"%@Public/Admin_Uploads/guide_image/", guideCommonHeadUrl]
 

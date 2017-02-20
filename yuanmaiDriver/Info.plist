@@ -252,6 +252,7 @@
 	<string>请同意远迈物流 司机版App访问您的相册来选择相应照片</string>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>audio</string>
 		<string>fetch</string>
 		<string>location</string>
 		<string>remote-notification</string>

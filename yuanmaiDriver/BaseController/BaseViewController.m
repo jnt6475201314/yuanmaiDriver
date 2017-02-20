@@ -389,7 +389,6 @@
     [UserDefaults setObject:location forKey:LOCATION];
     [UserDefaults synchronize];
     
-    [self uploadMyLocationToService];
 //    [self.locationManager stopUpdatingLocation];
 }
 

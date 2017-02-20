@@ -117,6 +117,7 @@
     [JPUSHService setupWithOption:launchOptions appKey:JPushAppKey
                           channel:JPushChannel
                  apsForProduction:YES];
+    
 }
 
 #pragma mark - JPUSHRegisterDelegate
@@ -151,30 +152,29 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 
 // iOS 10 Support
 - (void)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger))completionHandler {
-    // Required
+    // Required     应用正在打开使用时，收到通知会进入这里
     NSDictionary * userInfo = notification.request.content.userInfo;
     if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
     }
     completionHandler(UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以选择设置
     
-//    [MYFactoryManager uploadMyLocationToService];
+    [MYFactoryManager uploadMyLocationToService];
 }
 
 // iOS 10 Support
 - (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
-    // Required
+    // Required     通过点击通知打开程序的时候会进入这里
     NSDictionary * userInfo = response.notification.request.content.userInfo;
     if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
     }
     completionHandler();  // 系统要求执行这个方法
-//    [MYFactoryManager uploadMyLocationToService];
+    [MYFactoryManager uploadMyLocationToService];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     
-//    [MYFactoryManager uploadMyLocationToService];
     // Required, iOS 7 Support
     // 取得 APNs 标准信息内容
     NSDictionary *aps = [userInfo valueForKey:@"aps"];
@@ -203,7 +203,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 //2. 如果App状态为正在前台或者点击通知栏的通知消息，苹果的回调函数将被调用
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
-//    [MYFactoryManager uploadMyLocationToService];
+    [MYFactoryManager uploadMyLocationToService];
     // Required,For systems with less than or equal to iOS6
     [JPUSHService handleRemoteNotification:userInfo];
 }
