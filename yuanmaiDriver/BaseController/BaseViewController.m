@@ -356,7 +356,7 @@
     self.locationManager = [[CLLocationManager alloc] init];
     // 设置定位的精确度和更新频率
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    self.locationManager.distanceFilter = 1000.0f;
+    self.locationManager.distanceFilter = 100.0f;
     
     self.locationManager.delegate = self;
     // 授权状态是没有做过选择
@@ -389,6 +389,7 @@
     [UserDefaults setObject:location forKey:LOCATION];
     [UserDefaults synchronize];
     
+    [self uploadMyLocationToService];
 //    [self.locationManager stopUpdatingLocation];
 }
 

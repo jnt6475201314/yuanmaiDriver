@@ -154,6 +154,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 - (void)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger))completionHandler {
     // Required     应用正在打开使用时，收到通知会进入这里
     NSDictionary * userInfo = notification.request.content.userInfo;
+    NSLog(@"iOS 10 Support userInfo:%@", userInfo);
     if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
     }
@@ -166,6 +167,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 - (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
     // Required     通过点击通知打开程序的时候会进入这里
     NSDictionary * userInfo = response.notification.request.content.userInfo;
+    NSLog(@"iOS 10 Support userInfo:%@", userInfo);
     if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
     }
@@ -177,6 +179,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
     // Required, iOS 7 Support
     // 取得 APNs 标准信息内容
+    
+    [MYFactoryManager uploadMyLocationToService];
     NSDictionary *aps = [userInfo valueForKey:@"aps"];
     NSString *content = [aps valueForKey:@"alert"]; //推送显示的内容
     NSInteger badge = [[aps valueForKey:@"badge"] integerValue]; //badge数量
@@ -193,6 +197,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
     // iOS 7 Support Required,处理收到的APNS信息
     //如果应用在后台，在这里执行
+    NSLog(@"如果应用在后台，在这里执行 userInfo:%@", userInfo);
     [JPUSHService handleRemoteNotification:userInfo];
     completionHandler(UIBackgroundFetchResultNewData);
     
@@ -205,6 +210,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
     [MYFactoryManager uploadMyLocationToService];
     // Required,For systems with less than or equal to iOS6
+    NSLog(@"如果App状态为正在前台或者点击通知栏的通知消息，苹果的回调函数将被调用 userInfo:%@", userInfo);
     [JPUSHService handleRemoteNotification:userInfo];
 }
 

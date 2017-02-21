@@ -14,11 +14,11 @@
 #define GETTOKEN_Str [UserDefaults objectForKey:@"token_str"]
 #define GETDeviceToken [UserDefaults objectForKey:@"deviceToken"]
 
-#if 1   // 测试时使用的
+#if 0   // 测试时使用的
 #define CommonHeadUrl @"http://139.196.29.1/test/Admin/"
 #endif
 
-#if 0   // 上线时使用的
+#if 1   // 上线时使用的
 #define CommonHeadUrl @"http://202.91.248.43/Admin/"
 #endif
 
