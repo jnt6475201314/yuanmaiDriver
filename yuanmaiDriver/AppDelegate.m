@@ -10,11 +10,17 @@
 #import "ViewController.h"
 #import "LoginViewController.h"
 #import "TabBarViewController.h"
+#import "BGTask.h"
+#import "BGLogation.h"
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
 #import <UserNotifications/UserNotifications.h>
 #endif
 
 @interface AppDelegate ()<btnClickDelegate, JPUSHRegisterDelegate>
+@property (strong , nonatomic) BGTask *task;
+@property (strong , nonatomic) NSTimer *bgTimer;
+@property (strong , nonatomic) BGLogation *bgLocation;
+@property (strong , nonatomic) CLLocationManager *location;
 
 @end
 
@@ -24,6 +30,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [NSThread sleepForTimeInterval:1];//设置启动页面时间
+    [self configLocation];  // 集成位置
     [self configAPNsWithOptions:launchOptions]; // 注册通知
     
     //启动app---检查是否是首次启动此app
@@ -42,6 +49,67 @@
     }
     
     return YES;
+}
+
+- (void)configLocation
+{
+    _task = [BGTask shareBGTask];
+    UIAlertView *alert;
+    //判断定位权限
+    if([UIApplication sharedApplication].backgroundRefreshStatus == UIBackgroundRefreshStatusDenied)
+    {
+        alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"应用没有不可以定位，需要在在设置/通用/后台应用刷新开启" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else if ([UIApplication sharedApplication].backgroundRefreshStatus == UIBackgroundRefreshStatusRestricted)
+    {
+        alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"设备不可以定位" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else
+    {
+        self.bgLocation = [[BGLogation alloc]init];
+        [self.bgLocation startLocation];
+        [NSTimer scheduledTimerWithTimeInterval:120 target:self selector:@selector(log) userInfo:nil repeats:YES];
+    }
+
+}
+
+-(void)log
+{
+    NSLog(@"执行 上传我的位置信息到后台服务端");
+    [self uploadMyLocationToService];
+}
+
+// 上传我的位置信息到后台服务端
+- (void)uploadMyLocationToService
+{
+    if ([UserDefaults objectForKey:@"data"][@"driver_id"] && [UserDefaults objectForKey:LOCATION] && [GetLocationDict objectForKey:@"longitude"] && [GetLocationDict objectForKey:@"latitude"]) {
+        NSDictionary * locationParams = @{@"sid":GETDriver_ID, @"longitude":GetLongitude, @"latitude":GetLatitude};
+        NSLog(@"%@?%@", API_UPLoadLocation_URL, locationParams);
+        [NetRequest postDataWithUrlString:API_UPLoadLocation_URL withParams:locationParams success:^(id data) {
+            
+            NSLog(@"位置信息上传：data：%@", data);
+            if ([data[@"code"] isEqualToString:@"1"]) {
+                //                [self showTipView:@"上传位置信息成功！"];
+                NSLog(@"上传位置信息成功！message：%@", data[@"message"]);
+            }else if ([data[@"code"] isEqualToString:@"2"]){
+                //                [self showTipView:[NSString stringWithFormat:@"上传位置信息成功！message：%@", data[@"message"]]];
+            }else
+            {
+                //                [self showTipView:[NSString stringWithFormat:@"上传位置信息成功！message：%@", data[@"message"]]];
+            }
+        } fail:^(NSString *errorDes) {
+            
+            //            [self showTipView:@"上传位置信息失败！请检查当前网络状态或位置权限。"];
+            NSLog(@"上传位置信息失败！原因：%@", errorDes);
+        }];
+    }
+}
+
+-(void)startBgTask
+{
+    [_task beginNewBackgroundTask];
 }
 
 - (void)checkLoginEvnet

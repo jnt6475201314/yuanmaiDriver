@@ -84,8 +84,10 @@
 //        signOrderVC.params = _params;
 //        [self.navigationController pushViewController:signOrderVC animated:YES];
         [self showCanEdit:YES photo:^(UIImage *photo) {
+            NSData * imgData = UIImageJPEGRepresentation(photo, 0.5f);
+            NSString * image64 = [imgData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
             [self showHUD:@"正在上传回单，请稍候。。。" isDim:YES];
-            NSDictionary * params = @{@"driver_id":GETDriver_ID, @"gid":self.orderModel.uid, @"receipt":photo, @"state":@"13", @"autograph":photo};
+            NSDictionary * params = @{@"driver_id":GETDriver_ID, @"gid":self.orderModel.uid, @"receipt":image64, @"state":@"13", @"autograph":image64};
             [NetRequest postDataWithUrlString:API_OrderAction_URL withParams:params success:^(id data) {
                 NSLog(@"%@", data);
                 [self hideHUD];

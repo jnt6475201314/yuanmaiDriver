@@ -12,8 +12,13 @@
 #import <UMSocialSinaHandler.h>
 #import <UMSocialSinaSSOHandler.h>
 #import "TabBarViewController.h"
+#import "BGTask.h"
+#import "BGLogation.h"
 
 @interface BaseViewController ()<UMSocialUIDelegate>
+{
+    BOOL isCollect;
+}
 //加载视图
 @property (nonatomic,strong)UILabel *tipLabel;
 
@@ -49,7 +54,7 @@
     }
     
     // 获取位置信息
-    [self configLocation];
+//    [self configLocation];
 }
 
 - (void)initNavView{
@@ -324,6 +329,7 @@
     [self.view.window.layer addAnimation:animation forKey:@"animation"];
 }
 
+#if 0
 - (void)configLocation{
     // 初始化定位服务
     [self allocCLLocationManager];
@@ -374,6 +380,20 @@
 #pragma mark -  定位代理方法
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
 {
+    NSLog(@"定位收集");//正在手机定位不执行任何操作
+    
+    if (isCollect) {
+        
+        return;
+        
+    }
+    
+    [self performSelector:@selector(restartLocation) withObject:nil afterDelay:120];
+    
+    [self performSelector:@selector(stopLocation) withObject:nil afterDelay:10];
+    
+    isCollect = YES;
+    
     //得到newLocation
     CLLocation *loc = [locations objectAtIndex:0];
     
@@ -391,6 +411,41 @@
     
     [self uploadMyLocationToService];
 //    [self.locationManager stopUpdatingLocation];
+}
+
+-(void)restartLocation{
+    NSLog(@"重新启动定位");
+    
+    CLLocationManager *locationManager = [BGLogation shareBGLocation];
+    
+    locationManager.delegate = self;
+    
+    locationManager.distanceFilter = kCLDistanceFilterNone; // 不移动也可以后台刷新回调
+    
+    if ([[UIDevice currentDevice].systemVersion floatValue]>= 8.0) {
+        
+        [locationManager requestAlwaysAuthorization];
+        
+    }
+    
+    
+    
+    [locationManager startUpdatingLocation];
+    
+    [self.bgTask beginNewBackgroundTask];
+    
+}//停止后台定位
+
+-(void)stopLocation{
+    
+    NSLog(@"停止定位");
+    
+    isCollect = NO;
+    
+    CLLocationManager *locationManager = [BGLogation shareBGLocation];
+    
+    [locationManager stopUpdatingLocation];
+    
 }
 
 // 上传我的位置信息到后台服务端
@@ -431,6 +486,7 @@
     NSLog(@"AuthorizationStatus:%d", status);
 }
 
+#endif
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -120,6 +120,8 @@
 		FD6017CB1E40C691005E4BA7 /* OrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6017C81E40C691005E4BA7 /* OrderTableViewCell.m */; };
 		FD6017CC1E40C691005E4BA7 /* OrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD6017C91E40C691005E4BA7 /* OrderTableViewCell.xib */; };
 		FD6017CF1E40C728005E4BA7 /* OrderListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6017CE1E40C728005E4BA7 /* OrderListModel.m */; };
+		FD9724D21E5D2EAC00CDF16D /* BGLogation.m in Sources */ = {isa = PBXBuildFile; fileRef = FD9724CF1E5D2EAC00CDF16D /* BGLogation.m */; };
+		FD9724D31E5D2EAC00CDF16D /* BGTask.m in Sources */ = {isa = PBXBuildFile; fileRef = FD9724D11E5D2EAC00CDF16D /* BGTask.m */; };
 		FDCB79341E3A318A00CE57CE /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDCB79331E3A318A00CE57CE /* HomeViewController.m */; };
 		FDDE77F51E41E893006EE76F /* DetailOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDDE77F41E41E893006EE76F /* DetailOrderViewController.m */; };
 		FDDE77F81E420624006EE76F /* SignOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDDE77F71E420624006EE76F /* SignOrderViewController.m */; };
@@ -350,6 +352,10 @@
 		FD6017C91E40C691005E4BA7 /* OrderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OrderTableViewCell.xib; path = ../../OrderTableViewCell.xib; sourceTree = "<group>"; };
 		FD6017CD1E40C728005E4BA7 /* OrderListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderListModel.h; sourceTree = "<group>"; };
 		FD6017CE1E40C728005E4BA7 /* OrderListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderListModel.m; sourceTree = "<group>"; };
+		FD9724CE1E5D2EAC00CDF16D /* BGLogation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGLogation.h; sourceTree = "<group>"; };
+		FD9724CF1E5D2EAC00CDF16D /* BGLogation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGLogation.m; sourceTree = "<group>"; };
+		FD9724D01E5D2EAC00CDF16D /* BGTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGTask.h; sourceTree = "<group>"; };
+		FD9724D11E5D2EAC00CDF16D /* BGTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGTask.m; sourceTree = "<group>"; };
 		FDCB79321E3A318A00CE57CE /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		FDCB79331E3A318A00CE57CE /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		FDDE77F31E41E893006EE76F /* DetailOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailOrderViewController.h; sourceTree = "<group>"; };
@@ -566,6 +572,7 @@
 		FD44EEE31E3988A900AD55E0 /* Unities */ = {
 			isa = PBXGroup;
 			children = (
+				FD9724CD1E5D2EAC00CDF16D /* BGLogation */,
 				FD09B1341E43522B0084EE5F /* YTAnimation.h */,
 				FD09B1351E43522B0084EE5F /* YTAnimation.m */,
 				FD44EFAB1E399B5200AD55E0 /* NetRequest.h */,
@@ -878,6 +885,17 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		FD9724CD1E5D2EAC00CDF16D /* BGLogation */ = {
+			isa = PBXGroup;
+			children = (
+				FD9724CE1E5D2EAC00CDF16D /* BGLogation.h */,
+				FD9724CF1E5D2EAC00CDF16D /* BGLogation.m */,
+				FD9724D01E5D2EAC00CDF16D /* BGTask.h */,
+				FD9724D11E5D2EAC00CDF16D /* BGTask.m */,
+			);
+			path = BGLogation;
+			sourceTree = "<group>";
+		};
 		FDDE77F01E41DDE1006EE76F /* OtherVCs */ = {
 			isa = PBXGroup;
 			children = (
@@ -1180,12 +1198,14 @@
 				FD09B1211E4350BA0084EE5F /* SafeSettingViewController.m in Sources */,
 				FD44EF001E39894900AD55E0 /* BuycarViewController.m in Sources */,
 				FD44EFA01E398CAE00AD55E0 /* QRCodeGenerator.m in Sources */,
+				FD9724D31E5D2EAC00CDF16D /* BGTask.m in Sources */,
 				FD44EF891E398A3400AD55E0 /* MYFactoryManager.m in Sources */,
 				FD44EF021E39894900AD55E0 /* LatestViewController.m in Sources */,
 				FD09B1401E4496650084EE5F /* UIDevice+deviceSystem.m in Sources */,
 				FD44EF491E3989A300AD55E0 /* BrowsePicView.m in Sources */,
 				FD6017B11E3D892C005E4BA7 /* RegisterViewController.m in Sources */,
 				FD44EF431E3989A300AD55E0 /* SelectedView.m in Sources */,
+				FD9724D21E5D2EAC00CDF16D /* BGLogation.m in Sources */,
 				FD44EFA71E398E2A00AD55E0 /* ScanOrderViewController.m in Sources */,
 				FD44EF3E1E3989A300AD55E0 /* DeleteLabel.m in Sources */,
 				FD44EF751E3989FE00AD55E0 /* WPHotspotLabel.m in Sources */,
