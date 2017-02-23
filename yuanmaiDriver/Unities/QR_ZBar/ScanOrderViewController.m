@@ -302,7 +302,8 @@ static NSInteger ledType = 1;
                 detailOrderVC.upVCTitle = @"订单扫描";
                 detailOrderVC.scanModel = [[ScanModel alloc] initWithDictionary:modelDict error:nil];
                 NSLog(@"%@", detailOrderVC.scanModel);
-                [self.navigationController pushViewController:detailOrderVC animated:YES];
+//                [self.navigationController pushViewController:detailOrderVC animated:YES];
+                [self presentViewController:detailOrderVC animated:YES completion:nil];
                 
             }else
             {

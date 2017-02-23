@@ -158,6 +158,16 @@
     });
 }
 
+-(void)backClick:(UIButton *)button
+{
+    if ([self.upVCTitle isEqualToString:@"订单扫描"]) {
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }else if([self.upVCTitle isEqualToString:@"订单详情"])
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
 
 
 - (void)didReceiveMemoryWarning {
