@@ -119,7 +119,7 @@ static NSInteger ledType = 1;
 - (void)productMyQRViewEvent
 {
     QRCodeViewController *qrCodeVC = [[QRCodeViewController alloc] init];
-    [self.navigationController pushViewController:qrCodeVC animated:YES];
+    [self presentViewController:qrCodeVC animated:YES completion:nil];
 }
 
 - (void)openLigntEvent:(UIButton *)btn

@@ -121,7 +121,7 @@
     [location setObject:_longitude forKey:@"longitude"];
     [location setObject:_latitude forKey:@"latitude"];
     NSLog(@"经纬度  %f  %f ",loc.coordinate.latitude,loc.coordinate.longitude);
-    //    [self showTipView:[NSString stringWithFormat:@"经度：%@, 纬度：%@", _longitude, _latitude]];
+    NSLog(@"%@", [NSString stringWithFormat:@"经度：%@, 纬度：%@", _longitude, _latitude]);
     
     [UserDefaults setObject:location forKey:LOCATION];
     [UserDefaults synchronize];

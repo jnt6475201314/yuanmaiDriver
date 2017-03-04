@@ -66,9 +66,9 @@
 - (void)turnToLoginVC;  // 跳转到登陆页
 
 // 初始化定位服务
-//- (void)configLocation;
+- (void)configLocation;
 // 上传我的位置信息到后台服务端
-//- (void)uploadMyLocationToService;
+- (void)uploadMyLocationToService;
 
 /**
  *  添加翻页动画

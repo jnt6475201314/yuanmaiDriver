@@ -32,9 +32,11 @@
 
 - (void)Net_loadImageView{
     
+    NSLog(@"%@", API_GETGUIDANCEIMAGE_URL);
     [NetRequest postDataWithUrlString:API_GETGUIDANCEIMAGE_URL withParams:nil success:^(id data) {
         
-        NSString * guideheadImgUrl = API_guideheadImageUrl;
+        NSString * guideheadImgUrl = data[@"aa"];
+        NSLog(@"%@", data);
         for (NSDictionary * dict in data[@"data"]) {
             NSString * urlStr = [guideheadImgUrl stringByAppendingString:dict[@"guide1"]];
             [self.guideImageArray addObject:urlStr];

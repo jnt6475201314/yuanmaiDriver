@@ -62,7 +62,7 @@
         AppDelegateInstance.window.rootViewController = loginVC;
     }else if (indexPath.row == 1){
         SuggestionViewController * suggestionVC = [[SuggestionViewController alloc] init];
-        [self.navigationController pushViewController:suggestionVC animated:YES];
+        [self presentViewController:suggestionVC animated:YES completion:nil];
     }else if (indexPath.row == 2){
         SettingViewController * safeSettingVC = [[SettingViewController alloc] init];
         [self.navigationController pushViewController:safeSettingVC animated:YES];

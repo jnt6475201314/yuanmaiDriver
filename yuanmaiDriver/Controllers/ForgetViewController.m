@@ -139,7 +139,7 @@
 // 发送验证码数据请求
 - (void)sendMessage{
     
-    NSDictionary * params = @{@"user_name":_telNumberTF.text};
+    NSDictionary * params = @{@"user_name":_telNumberTF.text, @"type":@"siji"};
     NSLog(@"%@?user_name=%@", API_GetVerifyCode_URL, _telNumberTF.text);
     [NetRequest postDataWithUrlString:API_GetVerifyCode_URL withParams:params success:^(id data) {
         

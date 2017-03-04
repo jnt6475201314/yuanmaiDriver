@@ -7,9 +7,11 @@
 //
 
 #import "BaseViewController.h"
+#import "OrderListModel.h"
 
 @interface SignOrderViewController : BaseViewController
 
 @property (nonatomic, strong) NSMutableDictionary * params;
+@property (nonatomic, strong) OrderListModel * orderModel;
 
 @end

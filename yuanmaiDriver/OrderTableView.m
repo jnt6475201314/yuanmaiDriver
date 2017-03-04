@@ -17,17 +17,12 @@
     OrderTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:baseTableViewIdentifier];
     
     OrderListModel * model = self.tabViewDataSource[indexPath.section];
-    
-    cell.OrderNumberLabel.text = [NSString stringWithFormat:@"合同号：%@", model.contract_num];
-    if ([model.state isEqualToString:@"10"]) {
-        cell.OrderStateLabel.text = @"待接单";
-    }else if ([model.state isEqualToString:@"11"]){
-        cell.OrderStateLabel.text= @"运输中";
-    }else if ([model.state isEqualToString:@"12"]){
-        cell.OrderStateLabel.text= @"已到达";
-    }else if ([model.state isEqualToString:@"13"]){
-        cell.OrderStateLabel.text= @"已回单";
+    if (model.contract_num == NULL) {
+        cell.OrderNumberLabel.text = [NSString stringWithFormat:@"订单号：%@", model.order_number];
+    }else{
+        cell.OrderNumberLabel.text = [NSString stringWithFormat:@"合同号：%@", model.contract_num];
     }
+    cell.OrderStateLabel.text= model.state;
     cell.OrderStartingLabel.text = [NSString stringWithFormat:@"发货地址：%@", model.send];
     cell.OrderDestinationLabel.text = [NSString stringWithFormat:@"到货地址：%@", model.arrival_address];
     cell.OrderDestinationLabel.adjustsFontSizeToFitWidth = YES;

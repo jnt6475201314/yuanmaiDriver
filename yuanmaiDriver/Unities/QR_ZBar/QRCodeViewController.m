@@ -111,5 +111,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)backClick:(UIButton *)button
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 @end

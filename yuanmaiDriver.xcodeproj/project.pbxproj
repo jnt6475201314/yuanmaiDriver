@@ -120,6 +120,8 @@
 		FD6017CB1E40C691005E4BA7 /* OrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6017C81E40C691005E4BA7 /* OrderTableViewCell.m */; };
 		FD6017CC1E40C691005E4BA7 /* OrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD6017C91E40C691005E4BA7 /* OrderTableViewCell.xib */; };
 		FD6017CF1E40C728005E4BA7 /* OrderListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6017CE1E40C728005E4BA7 /* OrderListModel.m */; };
+		FD76D0671E6A84BB00A19C23 /* PJRSignatureView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD76D0661E6A84BB00A19C23 /* PJRSignatureView.m */; };
+		FD76D06A1E6A86A600A19C23 /* UploadReceiptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD76D0691E6A86A600A19C23 /* UploadReceiptViewController.m */; };
 		FD9724D21E5D2EAC00CDF16D /* BGLogation.m in Sources */ = {isa = PBXBuildFile; fileRef = FD9724CF1E5D2EAC00CDF16D /* BGLogation.m */; };
 		FD9724D31E5D2EAC00CDF16D /* BGTask.m in Sources */ = {isa = PBXBuildFile; fileRef = FD9724D11E5D2EAC00CDF16D /* BGTask.m */; };
 		FDCB79341E3A318A00CE57CE /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDCB79331E3A318A00CE57CE /* HomeViewController.m */; };
@@ -352,6 +354,10 @@
 		FD6017C91E40C691005E4BA7 /* OrderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OrderTableViewCell.xib; path = ../../OrderTableViewCell.xib; sourceTree = "<group>"; };
 		FD6017CD1E40C728005E4BA7 /* OrderListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderListModel.h; sourceTree = "<group>"; };
 		FD6017CE1E40C728005E4BA7 /* OrderListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderListModel.m; sourceTree = "<group>"; };
+		FD76D0651E6A84BB00A19C23 /* PJRSignatureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PJRSignatureView.h; sourceTree = "<group>"; };
+		FD76D0661E6A84BB00A19C23 /* PJRSignatureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PJRSignatureView.m; sourceTree = "<group>"; };
+		FD76D0681E6A86A600A19C23 /* UploadReceiptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadReceiptViewController.h; sourceTree = "<group>"; };
+		FD76D0691E6A86A600A19C23 /* UploadReceiptViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadReceiptViewController.m; sourceTree = "<group>"; };
 		FD9724CE1E5D2EAC00CDF16D /* BGLogation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGLogation.h; sourceTree = "<group>"; };
 		FD9724CF1E5D2EAC00CDF16D /* BGLogation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGLogation.m; sourceTree = "<group>"; };
 		FD9724D01E5D2EAC00CDF16D /* BGTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGTask.h; sourceTree = "<group>"; };
@@ -557,6 +563,7 @@
 		FD44EEE21E3988A800AD55E0 /* 3rd Class */ = {
 			isa = PBXGroup;
 			children = (
+				FD76D0641E6A84BB00A19C23 /* PJRSignatureView */,
 				FD09B1471E449F720084EE5F /* JPush */,
 				FD09B1301E4351EB0084EE5F /* XHPhoto */,
 				FD44EF921E398CAE00AD55E0 /* QR_ZBar */,
@@ -885,6 +892,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		FD76D0641E6A84BB00A19C23 /* PJRSignatureView */ = {
+			isa = PBXGroup;
+			children = (
+				FD76D0651E6A84BB00A19C23 /* PJRSignatureView.h */,
+				FD76D0661E6A84BB00A19C23 /* PJRSignatureView.m */,
+			);
+			path = PJRSignatureView;
+			sourceTree = "<group>";
+		};
 		FD9724CD1E5D2EAC00CDF16D /* BGLogation */ = {
 			isa = PBXGroup;
 			children = (
@@ -935,6 +951,8 @@
 				FDDE77F41E41E893006EE76F /* DetailOrderViewController.m */,
 				FDDE77F61E420624006EE76F /* SignOrderViewController.h */,
 				FDDE77F71E420624006EE76F /* SignOrderViewController.m */,
+				FD76D0681E6A86A600A19C23 /* UploadReceiptViewController.h */,
+				FD76D0691E6A86A600A19C23 /* UploadReceiptViewController.m */,
 			);
 			name = MainVCs;
 			sourceTree = "<group>";
@@ -1163,6 +1181,7 @@
 				FD09B1221E4350BA0084EE5F /* SuggestionViewController.m in Sources */,
 				FD44EEF11E3988E600AD55E0 /* LoadingViewController.m in Sources */,
 				FD44EF3F1E3989A300AD55E0 /* LeftPicBtn.m in Sources */,
+				FD76D06A1E6A86A600A19C23 /* UploadReceiptViewController.m in Sources */,
 				FD6017CF1E40C728005E4BA7 /* OrderListModel.m in Sources */,
 				FDDE77F51E41E893006EE76F /* DetailOrderViewController.m in Sources */,
 				FD6017B41E3D8A26005E4BA7 /* ForgetViewController.m in Sources */,
@@ -1214,6 +1233,7 @@
 				FD09B1331E4351EB0084EE5F /* UIViewController+XHPhoto.m in Sources */,
 				FDDE77F81E420624006EE76F /* SignOrderViewController.m in Sources */,
 				FD44EF481E3989A300AD55E0 /* BrowerView.m in Sources */,
+				FD76D0671E6A84BB00A19C23 /* PJRSignatureView.m in Sources */,
 				FD44EF411E3989A300AD55E0 /* MySelectView.m in Sources */,
 				FD44EF731E3989FE00AD55E0 /* SMPageControl.m in Sources */,
 				FD44EFA21E398CAE00AD55E0 /* QRViewController.m in Sources */,

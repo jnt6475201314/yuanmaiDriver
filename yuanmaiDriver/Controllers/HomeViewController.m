@@ -51,7 +51,7 @@
     p = [NSString stringWithFormat:@"%ld", _page];
     
     params = [NSMutableDictionary dictionaryWithDictionary:@{@"driver_id":GETDriver_ID, @"p":p}];
-    self.titles = @[@"待接单", @"运输中", @"已到达", @"已回单"];
+    self.titles = @[@"待运输", @"运输中", @"已到达", @"已回单"];
     [self configHeadSelectedView];
     [self configBottomScrollView];
 }
@@ -158,21 +158,21 @@
         {
 //            运输中
             self.tableView = _tableView1;
-            params = [NSMutableDictionary dictionaryWithDictionary:@{@"driver_id":GETDriver_ID, @"p":p, @"state":@"11"}];
+            params = [NSMutableDictionary dictionaryWithDictionary:@{@"driver_id":GETDriver_ID, @"p":p, @"state":@"2"}];
             break;
         }
         case 2:
         {
 //            已到达
             self.tableView = _tableView2;
-            params = [NSMutableDictionary dictionaryWithDictionary:@{@"driver_id":GETDriver_ID, @"p":p, @"state":@"12"}];
+            params = [NSMutableDictionary dictionaryWithDictionary:@{@"driver_id":GETDriver_ID, @"p":p, @"state":@"3"}];
         }
             break;
         case 3:
         {
 //            已回单
             self.tableView = _tableView3;
-            params = [NSMutableDictionary dictionaryWithDictionary:@{@"driver_id":GETDriver_ID, @"p":p, @"state":@"13"}];
+            params = [NSMutableDictionary dictionaryWithDictionary:@{@"driver_id":GETDriver_ID, @"p":p, @"state":@"4"}];
         }
             break;
         default:
@@ -186,7 +186,6 @@
     DetailOrderViewController * detailOrderVC = [[DetailOrderViewController alloc] init];
     detailOrderVC.upVCTitle = @"订单详情";
     detailOrderVC.orderModel = self.tableView.tabViewDataSource[indexPath.section];
-//    detailOrderVC.driverModel = [[DriverInfoModel alloc] initWithDictionary:data[@"data"] error:nil];
     [self.navigationController pushViewController:detailOrderVC animated:YES];
 
 }
@@ -231,17 +230,17 @@
         [self.tableView.tabViewDataSource addObject:model];
     }else if (self.tableView == _tableView1){
         OrderListModel * model = [[OrderListModel alloc] initWithDictionary:dict error:nil];
-        if ([model.state isEqualToString:@"11"]) {
+        if ([model.state isEqualToString:@"运输中"]) {
             [self.tableView.tabViewDataSource addObject:model];
         }
     }else if (self.tableView == _tableView2){
         OrderListModel * model = [[OrderListModel alloc] initWithDictionary:dict error:nil];
-        if ([model.state isEqualToString:@"12"]) {
+        if ([model.state isEqualToString:@"已完成"]) {
             [self.tableView.tabViewDataSource addObject:model];
         }
     }else if (self.tableView == _tableView3){
         OrderListModel * model = [[OrderListModel alloc] initWithDictionary:dict error:nil];
-        if ([model.state isEqualToString:@"13"]) {
+        if ([model.state isEqualToString:@"已回单"]) {
             [self.tableView.tabViewDataSource addObject:model];
         }
     }

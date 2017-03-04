@@ -10,11 +10,11 @@
 #import "SuggestTableView.h"
 #import "SuggestionTableViewCell.h"
 #import "PlaceholderTextView.h"
-//#import "ImageCollectionViewCell.h"
-//#import "UIViewController+XHPhoto.h"
-//#import "YTAnimation.h"
+#import "ImageCollectionViewCell.h"
+#import "UIViewController+XHPhoto.h"
+#import "YTAnimation.h"
 
-@interface SuggestionViewController ()<TableViewSelectedEvent, UITextViewDelegate, UITextFieldDelegate> // UICollectionViewDelegate, UICollectionViewDataSource, CellDelegate>
+@interface SuggestionViewController ()<TableViewSelectedEvent, UITextViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, CellDelegate>
 {
     UIView * _bgViewOfBtn;
     UIButton * _typeBtn;
@@ -22,19 +22,18 @@
     
     CABasicAnimation *animation;
     BOOL arrowImgDown;
-//
-//    BOOL deleteBtnFlag;
-//    BOOL rotateAniFlag;
     
-    UITextField * _contactTF;
+    BOOL deleteBtnFlag;
+    BOOL rotateAniFlag;
+    
     UIButton * _submitButton;
 }
 @property (nonatomic, strong) SuggestTableView * tableView;
 @property (nonatomic, strong) NSArray * dataSource;
 @property (nonatomic, strong) PlaceholderTextView * suggestTV;
-//@property (nonatomic, strong) UICollectionView * imageCollectionView;
-//@property (nonatomic, strong) NSMutableArray * imageArray;
-//@property (nonatomic, strong) NSMutableDictionary * params;
+@property (nonatomic, strong) UICollectionView * imageCollectionView;
+@property (nonatomic, strong) NSMutableArray * imageArray;
+@property (nonatomic, strong) NSMutableDictionary * params;
 
 @end
 
@@ -73,35 +72,28 @@
     
     arrowImgDown = YES;
     
-//    deleteBtnFlag = YES;
-//    rotateAniFlag = YES;
-//    [self addDoubleTapGesture];
+    deleteBtnFlag = YES;
+    rotateAniFlag = YES;
+    [self addDoubleTapGesture];
     
     UILabel * tvTitleLabel = [UILabel labelWithFrame:CGRectMake(30*widthScale,_bgViewOfBtn.bottom + 30*heightScale, _bgViewOfBtn.width, 20) text:@"建议内容：" font:16 textColor:[UIColor darkTextColor]];
     [self.view addSubview:tvTitleLabel];
     
     [self.view addSubview:self.suggestTV];
     
-    UILabel * imgTitleLabel = [UILabel labelWithFrame:CGRectMake(30*widthScale,_bgViewOfBtn.bottom + 220*heightScale, _bgViewOfBtn.width, 20) text:@"联系方式：" font:16 textColor:[UIColor darkTextColor]];
+    UILabel * imgTitleLabel = [UILabel labelWithFrame:CGRectMake(30*widthScale,_bgViewOfBtn.bottom + 220*heightScale, _bgViewOfBtn.width, 20) text:@"附加图片：" font:16 textColor:[UIColor darkTextColor]];
     [self.view addSubview:imgTitleLabel];
     
     self.tableView.tabViewDataSource = [[NSMutableArray alloc] initWithArray:self.dataSource];
     [self.view addSubview:self.tableView];
     self.tableView.height = 0;
     
-    _contactTF = [[UITextField alloc] initWithFrame:CGRectMake(screen_width/2-130*widthScale, imgTitleLabel.bottom+10*heightScale, 260*widthScale, 40*heightScale)];
-    _contactTF.backgroundColor = [UIColor whiteColor];
-    _contactTF.placeholder = @"请输入您的手机号或邮箱";
-    _contactTF.delegate = self;
-    _contactTF.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
-    _contactTF.borderStyle = UITextBorderStyleLine;
-    [self.view addSubview:_contactTF];
-//    [self.view addSubview:self.imageCollectionView];
+    [self.view addSubview:self.imageCollectionView];
     
-//    UILabel * tipTitleLabel = [UILabel labelWithFrame:CGRectMake(20*widthScale, self.imageCollectionView.bottom+10*heightScale, _bgViewOfBtn.width, 15*heightScale) text:@"（长按图片可进行编辑、双击空白出退出编辑）" font:12*widthScale textColor:[UIColor lightGrayColor]];
-//    [self.view addSubview:tipTitleLabel];
+    UILabel * tipTitleLabel = [UILabel labelWithFrame:CGRectMake(20*widthScale, self.imageCollectionView.bottom+10*heightScale, _bgViewOfBtn.width, 15*heightScale) text:@"（长按图片可进行编辑、双击空白出退出编辑）" font:12*widthScale textColor:[UIColor lightGrayColor]];
+    [self.view addSubview:tipTitleLabel];
     
-    _submitButton = [UIButton buttonWithFrame:CGRectMake(screen_width/2-130*widthScale, screen_height - 42*heightScale, 260*widthScale, 36*heightScale) title:@"提交建议" image:nil target:self action:@selector(submitButtonEvent:)];
+    _submitButton = [UIButton buttonWithFrame:CGRectMake(screen_width/2-130*widthScale, tipTitleLabel.bottom+40*heightScale, 260*widthScale, 36*heightScale) title:@"提交建议" image:nil target:self action:@selector(submitButtonEvent:)];
     _submitButton.enabled = NO;
     _submitButton.backgroundColor = [UIColor grayColor];
     _submitButton.titleLabel.font = boldSystemFont(16);
@@ -157,29 +149,80 @@
         _submitButton.transform = CGAffineTransformMakeScale(1.0, 1.0);
     } completion:^(BOOL finished) {
         
-        if (_suggestTV.text.length == 0 || _contactTF.text.length == 0) {
-            
-            [self showTipView:@"建议内容或联系方式不能为空！"];
-        }else
-        {
-            [self NetWorkOfSubmitSuggestion];   // 提交建议的网络请求
-        }
+        [self DealwithSubmitSuggestionParams];  // 处理网络请求的参数
+        [self NetWorkOfSubmitSuggestion];   // 提交建议的网络请求
     }];
+}
+
+- (void)DealwithSubmitSuggestionParams
+{
+    if (![_typeBtn.currentTitle isEqualToString:@"请选择建议类型"]) {
+        [self.params setValue:[NSString stringWithFormat:@"意见类型：%@，建议内容：%@", _typeBtn.currentTitle,self.suggestTV.text] forKey:@"content"];
+    }else
+    {
+        [self.params setValue:[NSString stringWithFormat:@"建议内容：%@", self.suggestTV.text] forKey:@"content"];
+    }
+    
+#warning 其实可以本来可以节省很多代码，原来是宿静不会这样弄。。。。😓
+#if 0
+    NSMutableArray * imgArray = [NSMutableArray arrayWithArray:self.imageArray];
+    NSMutableArray * baseImgArr = [[NSMutableArray alloc] init];
+    for (int i = 1; i < imgArray.count; i++) {
+        UIImage * image = imgArray[i];
+        NSData * imgData = UIImageJPEGRepresentation(image, 0.5f);
+        NSString * image64 = [imgData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+        [baseImgArr addObject:image64];
+    }
+    
+    //    NSLog(@"baseImgArr : **%@***  count :%ld", baseImgArr, baseImgArr.count);
+    [self.params setObject:baseImgArr forKey:@"arr"];
+#endif
+    
+#if 1
+    
+    NSInteger count = self.imageArray.count;
+    switch (count) {
+        case 1:
+            // 没有添加图片
+            break;
+        case 2:
+            // 1张
+        {
+            UIImage * image = self.imageArray[1];
+            NSData * imgData = UIImageJPEGRepresentation(image, 1.0f);
+            NSString * image64 = [imgData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+            [self.params setObject:image64 forKey:@"photo_a"];
+        }
+            break;
+        case 3:
+            // 2。。
+        {
+            for (int i = 1; i<3; i++) {
+                UIImage * image = self.imageArray[i];
+                NSData * imgData = UIImageJPEGRepresentation(image, 1.0f);
+                NSString * image64 = [imgData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+                if (i == 1) {
+                    [self.params setObject:image64 forKey:@"photo_a"];
+                }else if (i == 2){
+                    [self.params setObject:image64 forKey:@"photo_b"];
+                }
+            }
+        }
+            break;
+        default:
+            break;
+    }
+    
+#endif
+    
+    
 }
 
 - (void)NetWorkOfSubmitSuggestion
 {
-    NSString * suggestionContent;
-    if (![_typeBtn.currentTitle isEqualToString:@"请选择建议类型"]) {
-        suggestionContent = [NSString stringWithFormat:@"意见类型：%@，建议内容：%@", _typeBtn.currentTitle,self.suggestTV.text];
-    }else
-    {
-        suggestionContent = [NSString stringWithFormat:@"建议内容：%@", self.suggestTV.text];
-    }
-    
-    NSDictionary *params = @{@"content":suggestionContent,@"tel":_contactTF.text,@"driver_id":GETDriver_ID};
+    NSLog(@"%@?%@", API_SUGGESTION_URL, self.params);
     [self showHUD:@"正在提交，请稍候。。。" isDim:YES];
-    [NetRequest postDataWithUrlString:API_SUGGESTION_URL withParams:params success:^(id data) {
+    [NetRequest postDataWithUrlString:API_SUGGESTION_URL withParams:self.params success:^(id data) {
         [self hideHUD];
         NSLog(@"%@", data);
         if ([data[@"code"] isEqualToString:@"1"]) {
@@ -222,6 +265,118 @@
         
         arrowImgDown = !arrowImgDown;
     }];
+}
+
+#pragma mark - UICollectionView delegate dataSource
+#pragma mark 定义展示的UICollectionViewCell的个数
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return self.imageArray.count;
+}
+
+#pragma mark 定义展示的Section的个数
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+
+#pragma mark 每个UICollectionView展示的内容
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *identify = @"imageCollectionView";
+    ImageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
+    
+    if (indexPath.item == 0) {
+        cell.imgView.image = [UIImage imageNamed:self.imageArray[indexPath.item]];
+        //        cell.userInteractionEnabled = NO;
+        cell.deleteBtn.hidden = YES;
+    }else{
+        cell.indexPath = indexPath;
+        cell.deleteBtn.hidden = deleteBtnFlag?YES:NO;
+        cell.delegate = self;
+        if (!rotateAniFlag) {
+            [YTAnimation vibrateAnimation:cell];
+        }else{
+            [cell.layer removeAnimationForKey:@"shake"];
+        }
+        cell.imgView.image = self.imageArray[indexPath.item];
+    }
+    return cell;
+}
+
+// 点击每个cell触发的事件
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.item == 0) {
+        // 点击了添加相片按钮
+        NSLog(@"点击了添加相片按钮");
+        [self.view endEditing:YES];
+        if (self.imageArray.count < 3) {
+            [self hideAllDeleteBtn];
+            [self showCanEdit:YES photo:^(UIImage *photo) {
+                [self.imageArray addObject:photo];
+                [self.imageCollectionView reloadData];
+            }];
+        }else{
+            [self showTipView:@"图片数量不能超过2张哦😯"];
+        }
+        
+    }
+}
+
+#pragma mark - CellDelegate
+-(void)deleteCellAtIndexpath:(NSIndexPath *)indexPath cellView:(ImageCollectionViewCell *)cell{
+    if (self.imageArray.count < 1) {
+        [self hideAllDeleteBtn];
+        return;
+    }
+    
+    [self.imageCollectionView performBatchUpdates:^{
+        cell.imgView.image = nil;
+        cell.deleteBtn.hidden = YES;
+        
+        [YTAnimation fadeAnimation:cell];
+        
+        dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 1ULL * NSEC_PER_SEC);
+        dispatch_after(time, dispatch_get_main_queue(), ^{
+            
+            // 延时1s执行， 下面这两行执行删除cell的操作，包括移除数据源和删除item， 如果你用到数据库或者coreData
+            // 要先删掉数据库里的内容，再执行移除数据源和删除item
+            [self.imageArray removeObjectAtIndex:indexPath.row];
+            [self.imageCollectionView deleteItemsAtIndexPaths:@[indexPath]];
+        });
+    } completion:^(BOOL finished) {
+        
+        dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 1ULL * NSEC_PER_SEC);
+        dispatch_after(time, dispatch_get_main_queue(), ^{
+            
+            [self.imageCollectionView reloadData];
+        });
+    }];
+}
+
+- (void)handleDoubleTap:(UITapGestureRecognizer *) gestureRecognizer
+{
+    [self hideAllDeleteBtn];
+}
+
+-(void)addDoubleTapGesture{
+    UITapGestureRecognizer *doubletap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
+    [doubletap setNumberOfTapsRequired:2];
+    [self.view addGestureRecognizer:doubletap];
+}
+
+-(void)hideAllDeleteBtn{
+    if (!deleteBtnFlag) {
+        deleteBtnFlag = YES;
+        rotateAniFlag = YES;
+        [self.imageCollectionView reloadData];
+    }
+}
+
+-(void)showAllDeleteBtn{
+    deleteBtnFlag = NO;
+    rotateAniFlag = NO;
+    [self.imageCollectionView reloadData];
 }
 
 #pragma mark - UITextViewDelegate
@@ -283,6 +438,53 @@
     return _suggestTV;
 }
 
+-(UICollectionView *)imageCollectionView{
+    if (_imageCollectionView == nil) {
+        UICollectionViewFlowLayout * flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        
+        //        flowLayout.headerReferenceSize = CGSizeMake(screen_width, screen_height/4);
+        
+        _imageCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(screen_width/2-140*widthScale, _suggestTV.bottom + 50*heightScale, 280*widthScale, 86*heightScale) collectionViewLayout:flowLayout];
+        
+        // 定义每个UICollectionView 的大小
+        flowLayout.itemSize = CGSizeMake(83, 76);
+        // 定义每个UICollectionView 横向的间距
+        flowLayout.minimumLineSpacing = 5*widthScale;
+        // 定义每个UICollectionView 的纵向间距
+        flowLayout.minimumInteritemSpacing = 0;
+        // 定义每个UICollectionView 的边距
+        flowLayout.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5); // 上左下右
+        
+        //注册cell和ReusableView（相当于头部）
+        [_imageCollectionView registerClass:[ImageCollectionViewCell class] forCellWithReuseIdentifier:@"imageCollectionView"];
+        
+        //设置代理
+        _imageCollectionView.delegate = self;
+        _imageCollectionView.dataSource = self;
+        
+        //背景颜色
+        _imageCollectionView.backgroundColor = [UIColor clearColor];
+        //自适应大小
+        _imageCollectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    }
+    return _imageCollectionView;
+}
+
+-(NSMutableArray *)imageArray{
+    if (_imageArray == nil) {
+        _imageArray = [[NSMutableArray alloc] initWithObjects:@"addPhoto_img", nil];
+    }
+    return _imageArray;
+}
+
+-(NSMutableDictionary *)params
+{
+    if (!_params) {
+        _params = [[NSMutableDictionary alloc] initWithDictionary:@{@"driver_id":GETDriver_ID}];
+    }
+    return _params;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -290,8 +492,8 @@
 
 - (void)backClick:(UIButton *)button
 {
-    [self addAnimationWithType:TAnimationPageUnCurl Derection:FAnimationFromLeft];
-    [self.navigationController popViewControllerAnimated:YES];
+    [self addAnimationWithType:TAnimationReveal Derection:FAnimationFromBottom];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

@@ -54,7 +54,7 @@
     }
     
     // 获取位置信息
-//    [self configLocation];
+    [self configLocation];
 }
 
 - (void)initNavView{
@@ -329,7 +329,7 @@
     [self.view.window.layer addAnimation:animation forKey:@"animation"];
 }
 
-#if 0
+
 - (void)configLocation{
     // 初始化定位服务
     [self allocCLLocationManager];
@@ -382,17 +382,17 @@
 {
     NSLog(@"定位收集");//正在手机定位不执行任何操作
     
-    if (isCollect) {
-        
-        return;
-        
-    }
+//    if (isCollect) {
+//        
+//        return;
+//        
+//    }
     
-    [self performSelector:@selector(restartLocation) withObject:nil afterDelay:120];
+//    [self performSelector:@selector(restartLocation) withObject:nil afterDelay:120];
+//    
+//    [self performSelector:@selector(stopLocation) withObject:nil afterDelay:10];
     
-    [self performSelector:@selector(stopLocation) withObject:nil afterDelay:10];
-    
-    isCollect = YES;
+//    isCollect = YES;
     
     //得到newLocation
     CLLocation *loc = [locations objectAtIndex:0];
@@ -407,12 +407,14 @@
 //    [self showTipView:[NSString stringWithFormat:@"经度：%@, 纬度：%@", _longitude, _latitude]];
     
     [UserDefaults setObject:location forKey:LOCATION];
+    [UserDefaults setObject:_longitude forKey:@"longitude"];
+    [UserDefaults setObject:_latitude forKey:@"latitude"];
     [UserDefaults synchronize];
     
     [self uploadMyLocationToService];
 //    [self.locationManager stopUpdatingLocation];
 }
-
+#if 0
 -(void)restartLocation{
     NSLog(@"重新启动定位");
     
@@ -447,6 +449,7 @@
     [locationManager stopUpdatingLocation];
     
 }
+#endif
 
 // 上传我的位置信息到后台服务端
 - (void)uploadMyLocationToService
@@ -486,7 +489,7 @@
     NSLog(@"AuthorizationStatus:%d", status);
 }
 
-#endif
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

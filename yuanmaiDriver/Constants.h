@@ -94,9 +94,9 @@
 #define LOCATION @"location"
 #define GetLocationDict [UserDefaults objectForKey:LOCATION]
 // 获取经度
-#define GetLongitude [GetLocationDict objectForKey:@"longitude"]
+#define GetLongitude [UserDefaults objectForKey:@"longitude"]
 // 获取纬度
-#define GetLatitude [GetLocationDict objectForKey:@"latitude"]
+#define GetLatitude [UserDefaults objectForKey:@"latitude"]
 
 
 
