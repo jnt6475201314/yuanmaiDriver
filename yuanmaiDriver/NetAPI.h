@@ -24,6 +24,7 @@
 #endif
 
 #define CHECK_TokenStr_UrlStr [NSString stringWithFormat:@"%@Appdriver/verify", CommonHeadUrl]  // 检查异地登录
+#define API_uploadPushStr_URL [NSString stringWithFormat:@"%@AppPublic/GetDevice", CommonHeadUrl]  // 上传推送信息到服务器
 
 #define API_GETGUIDANCEIMAGE_URL [NSString stringWithFormat:@"%@AppPublic/guideImage", CommonHeadUrl]     // 引导页图片
 

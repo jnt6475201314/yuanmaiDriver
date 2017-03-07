@@ -411,7 +411,7 @@
     [UserDefaults setObject:_latitude forKey:@"latitude"];
     [UserDefaults synchronize];
     
-    [self uploadMyLocationToService];
+//    [self uploadMyLocationToService];
 //    [self.locationManager stopUpdatingLocation];
 }
 #if 0

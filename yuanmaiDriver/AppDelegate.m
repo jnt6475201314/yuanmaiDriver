@@ -30,7 +30,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [NSThread sleepForTimeInterval:1];//设置启动页面时间
-    [self configLocation];  // 集成位置
+//    [self configLocation];  // 集成位置
     [self configAPNsWithOptions:launchOptions]; // 注册通知
     
     //启动app---检查是否是首次启动此app
@@ -78,7 +78,7 @@
 -(void)log
 {
     NSLog(@"执行 上传我的位置信息到后台服务端");
-    [self uploadMyLocationToService];
+//    [self uploadMyLocationToService];
 }
 
 // 上传我的位置信息到后台服务端
@@ -295,7 +295,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     
     NSLog(@"applicationDidEnterBackground");
-    [MYFactoryManager uploadMyLocationToService];   // 上传我的位置信息到后台服务器
+//    [MYFactoryManager uploadMyLocationToService];   // 上传我的位置信息到后台服务器
 }
 
 
@@ -303,7 +303,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
     
     NSLog(@"applicationWillEnterForeground");
-    [MYFactoryManager uploadMyLocationToService];   // 上传我的位置信息到后台服务器
+//    [MYFactoryManager uploadMyLocationToService];   // 上传我的位置信息到后台服务器
 }
 
 
@@ -311,7 +311,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     
     NSLog(@"applicationDidBecomeActive");
-    [MYFactoryManager uploadMyLocationToService];   // 上传我的位置信息到后台服务器
+//    [MYFactoryManager uploadMyLocationToService];   // 上传我的位置信息到后台服务器
 }
 
 
@@ -321,7 +321,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     [self saveContext];
     
     NSLog(@"applicationWillTerminate");
-    [MYFactoryManager uploadMyLocationToService];   // 上传我的位置信息到后台服务器
+//    [MYFactoryManager uploadMyLocationToService];   // 上传我的位置信息到后台服务器
 }
 
 

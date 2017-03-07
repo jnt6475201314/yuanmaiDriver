@@ -41,8 +41,32 @@
     
     self.titleLabel.text = @"我的货单";
     
+    [self uploadPushInfoToServer];
+    
     [self configUI];
 }
+
+- (void)uploadPushInfoToServer
+{
+    NSString * registrationID = [JPUSHService registrationID];
+    NSLog(@"registrationID:%@", registrationID);
+    [JPUSHService registrationIDCompletionHandler:^(int resCode, NSString *registrationID) {
+        
+        NSLog(@"resCode:%d, registrationID:%@", resCode, registrationID);
+    }];
+    
+    NSDictionary * pushParams= @{@"driver_id":GETDriver_ID, @"device_token":GETDeviceToken, @"type":@"siji", @"registrationID":registrationID};
+    NSLog(@"%@?%@", API_uploadPushStr_URL, pushParams);
+    [NetRequest postDataWithUrlString:API_uploadPushStr_URL withParams:pushParams success:^(id data) {
+        
+        NSLog(@"uploadPushInfoToServer data : %@", data);
+    } fail:^(NSString *errorDes) {
+        
+        NSLog(@"设置推送信息失败，原因：%@", errorDes);
+    }];
+    
+}
+
 
 - (void)configUI{
     self.titleLabel.text = @"订单中心";
