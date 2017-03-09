@@ -117,6 +117,7 @@
     _plateNumberTF.placeholder = @"请输入车牌号";
     _plateNumberTF.delegate = self;
     _plateNumberTF.font = systemFont(15);
+    _plateNumberTF.keyboardType = UIKeyboardTypeASCIICapable;
     [_plateLabel addSubview:_plateNumberTF];
     
     [self initPickView];

@@ -25,9 +25,9 @@
 //app默认橙色
 #define pink_color color(238, 109, 140, 1)
 #define blue_color color(70, 150, 252, 1)
-#define red_color color(76, 180, 189, 1)
+#define red_color color(27, 146, 52, 1)
 //文本颜色
-#define default_text_color color(57, 57, 70, 1)
+#define default_text_color color(139, 139, 139, 1)
 //tabBar颜色
 #define navBar_color color(67, 89, 224, 1)
 //tabBar颜色

@@ -40,5 +40,6 @@
 #define API_SUGGESTION_URL [NSString stringWithFormat:@"%@/AppPublic/feedback", CommonHeadUrl]   // 建议
 #define API_UPDATEPWD_URL [NSString stringWithFormat:@"%@App/edit.html", CommonHeadUrl]      // 修改密码
 #define API_UPLoadLocation_URL [NSString stringWithFormat:@"%@Appdriver/location", CommonHeadUrl]      // 上传地址信息
+#define API_GETDriverInfo_URL [NSString stringWithFormat:@"%@Appdriver/DriverInfo", CommonHeadUrl]      // 我的信息
 
 #endif /* NetAPI_h */

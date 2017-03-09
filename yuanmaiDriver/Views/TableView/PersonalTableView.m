@@ -23,18 +23,19 @@
 }
 
 - (void)configHeadView{
-    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screen_width, 180)];
-    view.backgroundColor = red_color;
+    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screen_width, 150*heightScale)];
+    view.backgroundColor = [UIColor whiteColor];
     view.alpha = 0.8;
     self.tableHeaderView = view;
     
-    UIImageView * headImgView = [UIImageView imageViewWithFrame:CGRectMake(20, 0, 100, 100) image:@"per_headimg"];
-    headImgView.center = CGPointMake(20+headImgView.width/2, view.center.y);
+    UIImageView * headImgView = [UIImageView imageViewWithFrame:CGRectMake(20, 0, 136*widthScale*0.618*widthScale, 96*heightScale*0.618*widthScale) image:@"yuanmaiLogo"];
+    headImgView.center = CGPointMake(view.center.x, view.center.y-20*heightScale);
     [view addSubview:headImgView];
     
     NSDictionary * data = [UserDefaults objectForKey:@"data"];
     NSLog(@"%@", data);
-    UILabel * nameLabel = [UILabel labelWithFrame:CGRectMake(headImgView.right+10, view.height/2 - 20, 120, 40) text:data[@"user_name"] font:16 textColor:[UIColor darkTextColor]];
+    UILabel * nameLabel = [UILabel labelWithFrame:CGRectMake(view.width/2-100, headImgView.bottom + 10, 200, 40) text:data[@"user_name"] font:20 textColor:[UIColor darkTextColor]];
+    nameLabel.textAlignment = NSTextAlignmentCenter;
     [view addSubview:nameLabel];
 }
 
@@ -69,14 +70,6 @@
     }
 }
 
-
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-//    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screen_width, 160)];
-//    view.backgroundColor = [UIColor blueColor];
-//    
-//    return view;
-//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

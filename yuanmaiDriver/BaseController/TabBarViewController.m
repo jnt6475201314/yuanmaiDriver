@@ -64,8 +64,8 @@
     sepLine.backgroundColor = background_color;
     [_tabView addSubview:sepLine];
     NSArray *titleArray = @[@"我的货单", @"个人中心"];
-    NSArray *picArray = @[@"tab_order", @"tab_personal"];
-    NSArray *highArray = @[@"tab_order_h", @"tab_personal_h"];
+    NSArray *picArray = @[@"货单", @"个人中心"];
+    NSArray *highArray = @[@"货单_h", @"个人中心_h"];
     for (int i=0; i<titleArray.count; i++) {
         MyPicButton *button = [MyPicButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(screen_width/titleArray.count*i, 0, screen_width/titleArray.count, 49);
@@ -82,7 +82,7 @@
         }
         
         UIButton * scanBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.width/2 - 25, -20, 50, 50)];
-        [scanBtn setImage:[UIImage imageNamed:@"scan"] forState:UIControlStateNormal];
+        [scanBtn setImage:[UIImage imageNamed:@"扫描"] forState:UIControlStateNormal];
         scanBtn.backgroundColor = [UIColor whiteColor];
         scanBtn.layer.cornerRadius = 25;
         scanBtn.clipsToBounds = YES;

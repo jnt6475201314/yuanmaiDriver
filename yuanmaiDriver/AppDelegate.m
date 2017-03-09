@@ -226,7 +226,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
     }
-    completionHandler(UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以选择设置
+    completionHandler(nil); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以选择设置
     
     [MYFactoryManager uploadMyLocationToService];
 }
@@ -249,18 +249,18 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     // 取得 APNs 标准信息内容
     
     [MYFactoryManager uploadMyLocationToService];
-    NSDictionary *aps = [userInfo valueForKey:@"aps"];
-    NSString *content = [aps valueForKey:@"alert"]; //推送显示的内容
-    NSInteger badge = [[aps valueForKey:@"badge"] integerValue]; //badge数量
-    NSString *sound = [aps valueForKey:@"sound"]; //播放的声音
+//    NSDictionary *aps = [userInfo valueForKey:@"aps"];
+//    NSString *content = [aps valueForKey:@"alert"]; //推送显示的内容
+//    NSInteger badge = [[aps valueForKey:@"badge"] integerValue]; //badge数量
+//    NSString *sound = [aps valueForKey:@"sound"]; //播放的声音
     // 取得Extras字段内容
     NSString *customizeField1 = [userInfo valueForKey:@"customizeExtras"]; //服务端中Extras字段，key是自己定义的
-    NSLog(@"content =[%@], badge=[%ld], sound=[%@], customize field  =[%@]",content,(long)badge,sound,customizeField1);
+//    NSLog(@"content =[%@], badge=[%ld], sound=[%@], customize field  =[%@]",content,(long)badge,sound,customizeField1);
     //判断程序是否在前台运行
     if (application.applicationState ==UIApplicationStateActive) {
         //如果应用在前台，在这里执行
-        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"极光推送" message:content delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
-        [alertView show];
+//        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"极光推送" message:content delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
+//        [alertView show];
     }
     
     // iOS 7 Support Required,处理收到的APNS信息
@@ -279,6 +279,9 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     [MYFactoryManager uploadMyLocationToService];
     // Required,For systems with less than or equal to iOS6
     NSLog(@"如果App状态为正在前台或者点击通知栏的通知消息，苹果的回调函数将被调用 userInfo:%@", userInfo);
+    
+    [JPUSHService setBadge:0];//清空JPush服务器中存储的badge值
+    [application setApplicationIconBadgeNumber:0];//小红点清0操作
     [JPUSHService handleRemoteNotification:userInfo];
 }
 

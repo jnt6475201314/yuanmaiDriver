@@ -13,6 +13,7 @@
 #import "LoginViewController.h"
 #import "SuggestionViewController.h"
 #import "SettingViewController.h"
+#import "MyInfoViewController.h"
 
 
 @interface MineViewController ()<TableViewSelectedEvent>
@@ -39,7 +40,8 @@
 
 - (void)configDataSource
 {
-    NSArray * dataArray = @[@{@"pertitle":@"联系客服", @"perheadimg":@"p_service"}, @{@"pertitle":@"意见反馈", @"perheadimg":@"p_advice"}, @{@"pertitle":@"系统设置", @"perheadimg":@"p_set"}, @{@"pertitle":@"退出登录", @"perheadimg":@"p_logout"}];
+    // personal
+    NSArray * dataArray = @[@{@"pertitle":@"我的信息", @"perheadimg":@"personal"}, @{@"pertitle":@"联系客服", @"perheadimg":@"connectServer"}, @{@"pertitle":@"意见反馈", @"perheadimg":@"suggestion"}, @{@"pertitle":@"系统设置", @"perheadimg":@"safeSet"}, @{@"pertitle":@"退出登录", @"perheadimg":@"logOut"}];
     NSMutableArray * dataSource = [[NSMutableArray alloc] init];
     for (NSDictionary * dict in dataArray) {
         PersonalModel * model = [[PersonalModel alloc] initWithDictionary:dict error:nil];
@@ -55,15 +57,19 @@
 {
     NSLog(@"%ld", indexPath.row);
     if (indexPath.row == 0) {
+        // 我的信息
+        MyInfoViewController * MyInfoVC = [[MyInfoViewController alloc] init];
+        [self.navigationController pushViewController:MyInfoVC animated:YES];
+    }else if (indexPath.row == 1) {
         [self telephoBtnEvent];
-    }else if (indexPath.row == 3){
+    }else if (indexPath.row == 4){
         LoginViewController * loginVC = [[LoginViewController alloc] init];
         loginVC.logOut = @"YES";
         AppDelegateInstance.window.rootViewController = loginVC;
-    }else if (indexPath.row == 1){
+    }else if (indexPath.row == 2){
         SuggestionViewController * suggestionVC = [[SuggestionViewController alloc] init];
         [self presentViewController:suggestionVC animated:YES completion:nil];
-    }else if (indexPath.row == 2){
+    }else if (indexPath.row == 3){
         SettingViewController * safeSettingVC = [[SettingViewController alloc] init];
         [self.navigationController pushViewController:safeSettingVC animated:YES];
     }

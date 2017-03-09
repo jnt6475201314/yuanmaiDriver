@@ -79,7 +79,7 @@
 }
 
 - (void)configUI{
-    _bgImageView = [UIImageView imageViewWithFrame:screen_bounds image:@"backgroundImage"];
+    _bgImageView = [UIImageView imageViewWithFrame:screen_bounds image:@"login_bg_img"];
     [self.view addSubview:_bgImageView];
     
     _logoImageView = [UIImageView imageViewWithFrame:CGRectMake(screen_width/2-68*widthScale, 60*heightScale, 136*widthScale, 96*heightScale) image:@"yuanmaiLogo"];
@@ -110,13 +110,12 @@
     _password_TF.returnKeyType = UIReturnKeyDone;
     [self.view addSubview:_password_TF];
     
-    _loginButton = [UIButton buttonWithFrame:CGRectMake(screen_width/2-119*widthScale, _password_TF.bottom+50*heightScale, 238*widthScale, 38*heightScale) title:@"登 录" image:@"" target:self action:@selector(loginButtonEvent:)];
+    _loginButton = [UIButton buttonWithFrame:CGRectMake(screen_width/2-119*widthScale, _password_TF.bottom+50*heightScale, 238*widthScale, 38*heightScale) title:@"登 录" image:@"login_btn_img" target:self action:@selector(loginButtonEvent:)];
     [_loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     _loginButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
     _loginButton.titleLabel.font = boldSystemFont(17);
     _loginButton.layer.cornerRadius = 15;
     _loginButton.clipsToBounds = YES;
-    _loginButton.backgroundColor = red_color;
     [self.view addSubview:_loginButton];
     
     _registerButton = [UIButton buttonWithFrame:CGRectMake(_loginButton.left, _loginButton.bottom+5, 80, 40) title:@"注册" image:nil target:self action:@selector(registerButtonEvent:)];

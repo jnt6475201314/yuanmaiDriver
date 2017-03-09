@@ -35,6 +35,11 @@
 @end
 
 @implementation HomeViewController
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.tableView.mj_header beginRefreshing];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -54,16 +59,20 @@
         
         NSLog(@"resCode:%d, registrationID:%@", resCode, registrationID);
     }];
-    
-    NSDictionary * pushParams= @{@"driver_id":GETDriver_ID, @"device_token":GETDeviceToken, @"type":@"siji", @"registrationID":registrationID};
-    NSLog(@"%@?%@", API_uploadPushStr_URL, pushParams);
-    [NetRequest postDataWithUrlString:API_uploadPushStr_URL withParams:pushParams success:^(id data) {
-        
-        NSLog(@"uploadPushInfoToServer data : %@", data);
-    } fail:^(NSString *errorDes) {
-        
-        NSLog(@"设置推送信息失败，原因：%@", errorDes);
-    }];
+    if (registrationID != NULL) {
+        NSDictionary * pushParams= @{@"driver_id":GETDriver_ID, @"device_token":GETDeviceToken, @"type":@"siji", @"registrationID":registrationID};
+        NSLog(@"%@?%@", API_uploadPushStr_URL, pushParams);
+        [NetRequest postDataWithUrlString:API_uploadPushStr_URL withParams:pushParams success:^(id data) {
+            
+            NSLog(@"uploadPushInfoToServer data : %@", data);
+        } fail:^(NSString *errorDes) {
+            
+            NSLog(@"设置推送信息失败，原因：%@", errorDes);
+        }];
+    }else
+    {
+        NSLog(@"没有获取到 registrationID，无法上传通知数据到服务器");
+    }
     
 }
 
@@ -83,7 +92,7 @@
 - (void)configHeadSelectedView
 {
     _selectedView = [[SelectedView alloc] initWithFrame:CGRectMake(0, 63, screen_width, 40) withTitleArray:self.titles];
-    [_selectedView setViewWithNomalColor:[UIColor lightGrayColor] withSelectColor:red_color withTitlefont:systemFont(16)];
+    [_selectedView setViewWithNomalColor:[UIColor lightGrayColor] withSelectColor:[UIColor redColor] withTitlefont:systemFont(16)];
     [_selectedView setViewSepColor:[UIColor lightGrayColor] sepHeight:_selectedView.height - 14 sepWidth:1];
     _selectedView.backgroundColor = [UIColor whiteColor];
     _selectedView.layer.borderColor = [UIColor lightGrayColor].CGColor;
@@ -130,7 +139,6 @@
     }
     
     self.tableView = _tableView0;
-    [self.tableView.mj_header beginRefreshing];
     //添加视图
     [self.view addSubview:_scrollView];
     

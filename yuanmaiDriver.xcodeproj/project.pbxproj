@@ -124,6 +124,7 @@
 		FD76D06A1E6A86A600A19C23 /* UploadReceiptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD76D0691E6A86A600A19C23 /* UploadReceiptViewController.m */; };
 		FD9724D21E5D2EAC00CDF16D /* BGLogation.m in Sources */ = {isa = PBXBuildFile; fileRef = FD9724CF1E5D2EAC00CDF16D /* BGLogation.m */; };
 		FD9724D31E5D2EAC00CDF16D /* BGTask.m in Sources */ = {isa = PBXBuildFile; fileRef = FD9724D11E5D2EAC00CDF16D /* BGTask.m */; };
+		FDA57AF51E711C1F0089C7F7 /* MyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA57AF41E711C1F0089C7F7 /* MyInfoViewController.m */; };
 		FDCB79341E3A318A00CE57CE /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDCB79331E3A318A00CE57CE /* HomeViewController.m */; };
 		FDDE77F51E41E893006EE76F /* DetailOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDDE77F41E41E893006EE76F /* DetailOrderViewController.m */; };
 		FDDE77F81E420624006EE76F /* SignOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDDE77F71E420624006EE76F /* SignOrderViewController.m */; };
@@ -362,6 +363,8 @@
 		FD9724CF1E5D2EAC00CDF16D /* BGLogation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGLogation.m; sourceTree = "<group>"; };
 		FD9724D01E5D2EAC00CDF16D /* BGTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGTask.h; sourceTree = "<group>"; };
 		FD9724D11E5D2EAC00CDF16D /* BGTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGTask.m; sourceTree = "<group>"; };
+		FDA57AF31E711C1F0089C7F7 /* MyInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyInfoViewController.h; sourceTree = "<group>"; };
+		FDA57AF41E711C1F0089C7F7 /* MyInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyInfoViewController.m; sourceTree = "<group>"; };
 		FDCB79321E3A318A00CE57CE /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		FDCB79331E3A318A00CE57CE /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		FDDE77F31E41E893006EE76F /* DetailOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailOrderViewController.h; sourceTree = "<group>"; };
@@ -446,6 +449,8 @@
 				FD09B11E1E4350BA0084EE5F /* SafeSettingViewController.m */,
 				FD09B11F1E4350BA0084EE5F /* SuggestionViewController.h */,
 				FD09B1201E4350BA0084EE5F /* SuggestionViewController.m */,
+				FDA57AF31E711C1F0089C7F7 /* MyInfoViewController.h */,
+				FDA57AF41E711C1F0089C7F7 /* MyInfoViewController.m */,
 			);
 			name = PersonalVCs;
 			sourceTree = "<group>";
@@ -1216,6 +1221,7 @@
 				FD44EF051E39894900AD55E0 /* SnatchViewController.m in Sources */,
 				FD09B1211E4350BA0084EE5F /* SafeSettingViewController.m in Sources */,
 				FD44EF001E39894900AD55E0 /* BuycarViewController.m in Sources */,
+				FDA57AF51E711C1F0089C7F7 /* MyInfoViewController.m in Sources */,
 				FD44EFA01E398CAE00AD55E0 /* QRCodeGenerator.m in Sources */,
 				FD9724D31E5D2EAC00CDF16D /* BGTask.m in Sources */,
 				FD44EF891E398A3400AD55E0 /* MYFactoryManager.m in Sources */,

@@ -82,6 +82,9 @@
     _titleLabel.textAlignment = 1;
     _titleLabel.font = [UIFont systemFontOfSize:20.0f];
     _titleLabel.textColor = [UIColor whiteColor];
+    
+    UIImageView * navImgView = [UIImageView imageViewWithFrame:_navView.bounds image:@"Bar"];
+    [_navView addSubview:navImgView];
     [_navView addSubview:_titleLabel];
     [self.view addSubview:_navView];
     
@@ -455,7 +458,7 @@
 - (void)uploadMyLocationToService
 {
     if ([UserDefaults objectForKey:@"data"][@"driver_id"] && [UserDefaults objectForKey:LOCATION] && [GetLocationDict objectForKey:@"longitude"] && [GetLocationDict objectForKey:@"latitude"]) {
-        NSDictionary * locationParams = @{@"sid":GETDriver_ID, @"longitude":GetLongitude, @"latitude":GetLatitude};
+        NSDictionary * locationParams = @{@"sid":GETDriver_ID, @"mobile":[UserDefaults objectForKey:@"data"][@"user_name"], @"longitude":GetLongitude, @"latitude":GetLatitude};
         NSLog(@"%@?%@", API_UPLoadLocation_URL, locationParams);
         [NetRequest postDataWithUrlString:API_UPLoadLocation_URL withParams:locationParams success:^(id data) {
             

@@ -29,7 +29,7 @@
 
 - (void)configUI
 {
-    self.tableView.tabViewDataSource = [[NSMutableArray alloc] initWithArray:@[@"修改密码", @"消息通知", @"异地登录", @"缓存清理", @"分享给好友"]];
+    self.tableView.tabViewDataSource = [[NSMutableArray alloc] initWithArray:@[@"修改密码", @"异地登录", @"分享给好友"]];  // @[@"修改密码", @"消息通知", @"异地登录", @"缓存清理", @"分享给好友"]
     [self.view addSubview:self.tableView];
     
 }
