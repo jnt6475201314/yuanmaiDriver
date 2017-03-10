@@ -220,7 +220,7 @@
     if ([MYFactoryManager phoneNum:_telNumberTF.text]) {
         sender.enabled = NO;
         //button type要 设置成custom 否则会闪动
-        [sender startCountDownWithSecond:30];
+        [sender startCountDownWithSecond:120];
         
         [sender countDownChanging:^NSString *(JKCountDownButton *countDownButton, NSUInteger second) {
             
