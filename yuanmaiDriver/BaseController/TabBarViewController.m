@@ -69,7 +69,7 @@
     for (int i=0; i<titleArray.count; i++) {
         MyPicButton *button = [MyPicButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(screen_width/titleArray.count*i, 0, screen_width/titleArray.count, 49);
-        [button setBtnViewWithImage:[picArray objectAtIndex:i] withImageWidth:25 withTitle:[titleArray objectAtIndex:i] withTitleColor:default_text_color withFont:systemFont(11.0f)];
+        [button setBtnViewWithImage:[picArray objectAtIndex:i] withImageWidth:25 withTitle:[titleArray objectAtIndex:i] withTitleColor:default_text_color withFont:systemFont(15.0f)];
         button.picPlacement = 1;
         button.imageDistant = 5;
         [button setBtnselectImage:[highArray objectAtIndex:i]withselectTitleColor:red_color];

@@ -48,16 +48,21 @@
         tf.layer.borderColor = [UIColor lightGrayColor].CGColor;
         tf.layer.borderWidth = 1;
         tf.textColor = [UIColor darkTextColor];
-        tf.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
         tf.tag = 50+i;
         switch (i) {
             case 0:
+            {
                 _telNumberTF = tf;
-                _telNumberTF.returnKeyType = UIReturnKeyNext;
+                NSDictionary * data = [UserDefaults objectForKey:@"data"];
+                NSLog(@"%@", data);
+                _telNumberTF.text = data[@"user_name"];
+                _telNumberTF.enabled = NO;
                 break;
+            }
             case 1:
                 _oldPasswordTF = tf;
                 _oldPasswordTF.returnKeyType = UIReturnKeyNext;
+                _oldPasswordTF.secureTextEntry = YES;
                 break;
             case 2:
                 _passwordTF = tf;

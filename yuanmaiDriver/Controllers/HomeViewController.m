@@ -91,8 +91,8 @@
 
 - (void)configHeadSelectedView
 {
-    _selectedView = [[SelectedView alloc] initWithFrame:CGRectMake(0, 63, screen_width, 40) withTitleArray:self.titles];
-    [_selectedView setViewWithNomalColor:[UIColor lightGrayColor] withSelectColor:[UIColor redColor] withTitlefont:systemFont(16)];
+    _selectedView = [[SelectedView alloc] initWithFrame:CGRectMake(0, 63, screen_width, 50*heightScale) withTitleArray:self.titles];
+    [_selectedView setViewWithNomalColor:[UIColor lightGrayColor] withSelectColor:[UIColor redColor] withTitlefont:systemFont(17)];
     [_selectedView setViewSepColor:[UIColor lightGrayColor] sepHeight:_selectedView.height - 14 sepWidth:1];
     _selectedView.backgroundColor = [UIColor whiteColor];
     _selectedView.layer.borderColor = [UIColor lightGrayColor].CGColor;
