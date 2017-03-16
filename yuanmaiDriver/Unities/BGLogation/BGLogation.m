@@ -24,7 +24,7 @@
     if(self == [super init])
     {
         //
-        _bgTask = [BGTask shareBGTask];
+//        _bgTask = [BGTask shareBGTask];
         isCollect = NO;
         //监听进入后台通知
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationEnterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
@@ -54,7 +54,7 @@
         [locationManager requestAlwaysAuthorization];
     }
     [locationManager startUpdatingLocation];
-    [_bgTask beginNewBackgroundTask];
+//    [_bgTask beginNewBackgroundTask];
 }
 //重启定位服务
 -(void)restartLocation
@@ -67,7 +67,7 @@
         [locationManager requestAlwaysAuthorization];
     }
     [locationManager startUpdatingLocation];
-    [self.bgTask beginNewBackgroundTask];
+//    [self.bgTask beginNewBackgroundTask];
 }
 //开启服务
 - (void)startLocation {
@@ -154,8 +154,8 @@
         NSLog(@"上传位置信息失败！原因：%@", errorDes);
     }];
     
-    [self performSelector:@selector(restartLocation) withObject:nil afterDelay:120];
-    [self performSelector:@selector(stopLocation) withObject:nil afterDelay:10];
+//    [self performSelector:@selector(restartLocation) withObject:nil afterDelay:120];
+//    [self performSelector:@selector(stopLocation) withObject:nil afterDelay:60];
     isCollect = YES;//标记正在定位
 }
 - (void)locationManager: (CLLocationManager *)manager didFailWithError: (NSError *)error

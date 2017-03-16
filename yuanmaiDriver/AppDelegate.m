@@ -109,7 +109,7 @@
 
 -(void)startBgTask
 {
-    [_task beginNewBackgroundTask];
+//    [_task beginNewBackgroundTask];
 }
 
 - (void)checkLoginEvnet
@@ -327,6 +327,9 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     [self saveContext];
     
     NSLog(@"applicationWillTerminate");
+    // 程序即将被终止
+    self.bgLocation = [[BGLogation alloc]init];
+    [self.bgLocation startLocation];
 //    [MYFactoryManager uploadMyLocationToService];   // 上传我的位置信息到后台服务器
 }
 
