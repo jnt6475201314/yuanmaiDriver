@@ -124,10 +124,15 @@
     NSLog(@"系统的经纬度  %f  %f ",loc.coordinate.latitude,loc.coordinate.longitude);
     NSLog(@"谷歌的经纬度 %@", [NSString stringWithFormat:@"经度：%f, 纬度：%f", GoogleLoc.latitude, GoogleLoc.longitude]);
     NSLog(@"百度的经纬度  %f  %f ",baiduLoc.latitude, baiduLoc.longitude);
-    NSString * _longitude = [NSString stringWithFormat:@"%f", GoogleLoc.longitude];
-    NSString * _latitude = [NSString stringWithFormat:@"%f", GoogleLoc.latitude];
+    NSString * _longitude = [NSString stringWithFormat:@"%f", loc.coordinate.longitude];
+    NSString * _latitude = [NSString stringWithFormat:@"%f", loc.coordinate.latitude];
     [location setObject:_longitude forKey:@"longitude"];
     [location setObject:_latitude forKey:@"latitude"];
+    
+    [UserDefaults setObject:location forKey:LOCATION];
+    [UserDefaults setObject:_longitude forKey:@"longitude"];
+    [UserDefaults setObject:_latitude forKey:@"latitude"];
+    [UserDefaults synchronize];
     
     NSDictionary * locationParams = @{@"sid":GETDriver_ID,@"mobile":[UserDefaults objectForKey:@"data"][@"user_name"], @"longitude":_longitude, @"latitude":_latitude};
     NSLog(@"%@?%@", API_UPLoadLocation_URL, locationParams);
