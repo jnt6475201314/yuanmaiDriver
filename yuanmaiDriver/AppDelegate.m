@@ -30,7 +30,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [NSThread sleepForTimeInterval:1];//设置启动页面时间
-//    [self configLocation];  // 集成位置
+    [self configLocation];  // 集成位置
     [self configAPNsWithOptions:launchOptions]; // 注册通知
     
     //启动app---检查是否是首次启动此app
@@ -53,7 +53,7 @@
 
 - (void)configLocation
 {
-    _task = [BGTask shareBGTask];
+//    _task = [BGTask shareBGTask];
     UIAlertView *alert;
     //判断定位权限
     if([UIApplication sharedApplication].backgroundRefreshStatus == UIBackgroundRefreshStatusDenied)
@@ -70,7 +70,7 @@
     {
         self.bgLocation = [[BGLogation alloc]init];
         [self.bgLocation startLocation];
-        [NSTimer scheduledTimerWithTimeInterval:120 target:self selector:@selector(log) userInfo:nil repeats:YES];
+//        [NSTimer scheduledTimerWithTimeInterval:300 target:self selector:@selector(log) userInfo:nil repeats:YES];
     }
 
 }
@@ -78,30 +78,30 @@
 -(void)log
 {
     NSLog(@"执行 上传我的位置信息到后台服务端");
-//    [self uploadMyLocationToService];
+    [self uploadMyLocationToService];
 }
 
 // 上传我的位置信息到后台服务端
 - (void)uploadMyLocationToService
 {
     if ([UserDefaults objectForKey:@"data"][@"driver_id"] && [UserDefaults objectForKey:LOCATION] && [GetLocationDict objectForKey:@"longitude"] && [GetLocationDict objectForKey:@"latitude"]) {
-        NSDictionary * locationParams = @{@"sid":GETDriver_ID, @"longitude":GetLongitude, @"latitude":GetLatitude};
+        NSDictionary * locationParams = @{@"sid":GETDriver_ID,@"mobile":[UserDefaults objectForKey:@"data"][@"user_name"], @"longitude":GetLongitude, @"latitude":GetLatitude};
         NSLog(@"%@?%@", API_UPLoadLocation_URL, locationParams);
         [NetRequest postDataWithUrlString:API_UPLoadLocation_URL withParams:locationParams success:^(id data) {
             
             NSLog(@"位置信息上传：data：%@", data);
             if ([data[@"code"] isEqualToString:@"1"]) {
-                //                [self showTipView:@"上传位置信息成功！"];
+                
                 NSLog(@"上传位置信息成功！message：%@", data[@"message"]);
             }else if ([data[@"code"] isEqualToString:@"2"]){
-                //                [self showTipView:[NSString stringWithFormat:@"上传位置信息成功！message：%@", data[@"message"]]];
+                
+                NSLog(@"上传位置信息成功！message：%@", data[@"message"]);
             }else
             {
-                //                [self showTipView:[NSString stringWithFormat:@"上传位置信息成功！message：%@", data[@"message"]]];
+                NSLog(@"上传位置信息成功！message：%@", data[@"message"]);
             }
         } fail:^(NSString *errorDes) {
             
-            //            [self showTipView:@"上传位置信息失败！请检查当前网络状态或位置权限。"];
             NSLog(@"上传位置信息失败！原因：%@", errorDes);
         }];
     }
@@ -130,7 +130,7 @@
         } fail:^(NSString *errorDes) {
             
             NSLog(@"%@", errorDes);
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{             
                 [self initLoginVC];
             });
         }];
@@ -228,7 +228,10 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     }
     completionHandler(nil); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以选择设置
     
-    [MYFactoryManager uploadMyLocationToService];
+    self.bgLocation = [[BGLogation alloc]init];
+    [self.bgLocation startLocation];
+//    [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(log) userInfo:nil repeats:YES];
+//    [self startBgTask];
 }
 
 // iOS 10 Support
