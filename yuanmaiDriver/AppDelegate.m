@@ -53,7 +53,7 @@
 
 - (void)configLocation
 {
-//    _task = [BGTask shareBGTask];
+    _task = [BGTask shareBGTask];
     UIAlertView *alert;
     //判断定位权限
     if([UIApplication sharedApplication].backgroundRefreshStatus == UIBackgroundRefreshStatusDenied)
@@ -77,8 +77,9 @@
 
 -(void)log
 {
-    NSLog(@"执行 上传我的位置信息到后台服务端");
-    [self uploadMyLocationToService];
+    NSLog(@"执行 重新启动新的后台task");
+    _task = [BGTask shareBGTask];
+    [self.task beginNewBackgroundTask];
 }
 
 // 上传我的位置信息到后台服务端
@@ -109,7 +110,7 @@
 
 -(void)startBgTask
 {
-//    [_task beginNewBackgroundTask];
+    [_task beginNewBackgroundTask];
 }
 
 - (void)checkLoginEvnet
@@ -230,8 +231,10 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
     self.bgLocation = [[BGLogation alloc]init];
     [self.bgLocation startLocation];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self log];
+    });
 //    [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(log) userInfo:nil repeats:YES];
-//    [self startBgTask];
 }
 
 // iOS 10 Support

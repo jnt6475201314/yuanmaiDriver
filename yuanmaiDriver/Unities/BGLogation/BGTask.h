@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 @interface BGTask : NSObject
-//+(instancetype)shareBGTask;
-//-(UIBackgroundTaskIdentifier)beginNewBackgroundTask; //开启后台任务
++(instancetype)shareBGTask;
+-(UIBackgroundTaskIdentifier)beginNewBackgroundTask; //开启后台任务
 @end

@@ -16,7 +16,7 @@
 
 #if 1   // 测试时使用的
 //#define CommonHeadUrl @"http://139.199.219.224/test/Admin/"
-#define CommonHeadUrl @"https://ymapp.yuanmaiwuliu.com/Admin/"
+#define CommonHeadUrl @"http://ymapp.yuanmaiwuliu.com/Admin/"
 #endif
 
 #if 0   // 上线时使用的
