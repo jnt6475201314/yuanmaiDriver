@@ -32,6 +32,7 @@
     [NSThread sleepForTimeInterval:1];//设置启动页面时间
     [self configLocation];  // 集成位置
     [self configAPNsWithOptions:launchOptions]; // 注册通知
+    [application setApplicationIconBadgeNumber:0];//小红点清0操作
     
     //启动app---检查是否是首次启动此app
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -179,7 +180,7 @@
         // NSSet<UIUserNotificationCategory *> *categories for iOS8 and iOS9
     }
     [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
-    
+    [JPUSHService setBadge:0];//清空JPush服务器中存储的badge值
     // init Push
     // notice: 2.1.5版本的SDK新增的注册方法，改成可上报IDFA，如果没有使用IDFA直接传nil
     // 如需继续使用pushConfig.plist文件声明appKey等配置内容，请依旧使用[JPUSHService setupWithOption:launchOptions]方式初始化。

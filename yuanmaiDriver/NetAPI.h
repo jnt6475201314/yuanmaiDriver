@@ -14,13 +14,12 @@
 #define GETTOKEN_Str [UserDefaults objectForKey:@"token_str"]
 #define GETDeviceToken [UserDefaults objectForKey:@"deviceToken"]
 
-#if 1   // 测试时使用的
-//#define CommonHeadUrl @"http://139.199.219.224/test/Admin/"
-#define CommonHeadUrl @"http://ymapp.yuanmaiwuliu.com/Admin/"
+#if 0   // 测试时使用的
+#define CommonHeadUrl @"http://139.199.219.224/test/Admin/"
 #endif
 
-#if 0   // 上线时使用的
-#define CommonHeadUrl @"http://202.91.248.43/Admin/"
+#if 1   // 上线时使用的
+#define CommonHeadUrl @"https://ymapp.yuanmaiwuliu.com/Admin/"
 #endif
 
 #define CHECK_TokenStr_UrlStr [NSString stringWithFormat:@"%@Appdriver/verify", CommonHeadUrl]  // 检查异地登录
