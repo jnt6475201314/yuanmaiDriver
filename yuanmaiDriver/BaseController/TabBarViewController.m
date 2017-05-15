@@ -8,6 +8,8 @@
 
 #import "TabBarViewController.h"
 #import "HomeViewController.h"
+#import "IWViewController.h"
+#import "ServiceViewController.h"
 #import "MineViewController.h"
 #import "ScanOrderViewController.h"
 
@@ -38,12 +40,14 @@
 //    LatestViewController *itemVC = [[LatestViewController alloc] init];
 //    DiscoveryViewController *investVC = [[DiscoveryViewController alloc] init];
 //    BuycarViewController *buycarVC = [[BuycarViewController alloc] init];
+    IWViewController * iwVC = [[IWViewController alloc]init];
+    ServiceViewController * serviceVC = [[ServiceViewController alloc]init];
     MineViewController *mineVC = [[MineViewController alloc] init];
     
     //用户默认信息
     //    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     //    NSString *userId = [defaults objectForKey:@"userId"];
-    NSArray *viewArr = [[NSArray alloc] initWithObjects:homeVC,mineVC, nil];
+    NSArray *viewArr = [[NSArray alloc] initWithObjects:homeVC,iwVC,serviceVC,mineVC, nil];
     NSMutableArray *mArray = [[NSMutableArray alloc] initWithCapacity:viewArr.count];
     for (UIViewController *vc in viewArr) {
         UINavigationController *navCon = [[UINavigationController alloc] initWithRootViewController:vc];
@@ -63,9 +67,9 @@
     UIView *sepLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0.5, screen_width, 0.5)];
     sepLine.backgroundColor = background_color;
     [_tabView addSubview:sepLine];
-    NSArray *titleArray = @[@"我的货单", @"个人中心"];
-    NSArray *picArray = @[@"货单", @"个人中心"];
-    NSArray *highArray = @[@"货单_h", @"个人中心_h"];
+    NSArray *titleArray = @[@"我的货单", @"即时运单", @"服务", @"个人中心"];
+    NSArray *picArray = @[@"货单",@"即时运单", @"sevice_no_select", @"个人中心"];
+    NSArray *highArray = @[@"货单_h",@"即时运单_h",@"sevice_select", @"个人中心_h"];
     for (int i=0; i<titleArray.count; i++) {
         MyPicButton *button = [MyPicButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(screen_width/titleArray.count*i, 0, screen_width/titleArray.count, 49);
@@ -81,15 +85,15 @@
             lastBtn = button;
         }
         
-        UIButton * scanBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.width/2 - 25, -20, 50, 50)];
-        [scanBtn setImage:[UIImage imageNamed:@"扫描"] forState:UIControlStateNormal];
-        scanBtn.backgroundColor = [UIColor whiteColor];
-        scanBtn.layer.cornerRadius = 25;
-        scanBtn.clipsToBounds = YES;
-        scanBtn.layer.borderColor = background_color.CGColor;
-        scanBtn.layer.borderWidth = 0.5;
-        [scanBtn addTarget:self action:@selector(scanBtnClickEvnet) forControlEvents:UIControlEventTouchUpInside];
-        [_tabView addSubview:scanBtn];
+//        UIButton * scanBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.width/2 - 25, -20, 50, 50)];
+//        [scanBtn setImage:[UIImage imageNamed:@"扫描"] forState:UIControlStateNormal];
+//        scanBtn.backgroundColor = [UIColor whiteColor];
+//        scanBtn.layer.cornerRadius = 25;
+//        scanBtn.clipsToBounds = YES;
+//        scanBtn.layer.borderColor = background_color.CGColor;
+//        scanBtn.layer.borderWidth = 0.5;
+//        [scanBtn addTarget:self action:@selector(scanBtnClickEvnet) forControlEvents:UIControlEventTouchUpInside];
+//        [_tabView addSubview:scanBtn];
     }
     [self.view addSubview:_tabView];
 }

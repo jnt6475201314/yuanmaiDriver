@@ -15,5 +15,5 @@
 @property (nonatomic, copy) NSString * upVCTitle;
 @property (nonatomic, strong) ScanModel * scanModel;
 @property (nonatomic, strong) OrderListModel * orderModel;
-
+@property (nonatomic, assign) NSInteger sectionNumber;
 @end

@@ -16,7 +16,7 @@
 @property (nonatomic, copy) NSString<Optional> * send;
 @property (nonatomic, copy) NSString<Optional> * state;
 @property (nonatomic, copy) NSString<Optional> * uid;
-
+@property (nonatomic, copy) NSString<Optional> * receipt;
 @property (nonatomic, copy) NSString<Optional> * gid;   // 运单id
 @property (nonatomic, copy) NSString<Optional> * order_number;  // 定单号
 @property (nonatomic, copy) NSString<Optional> * cooperation_company;   // 3 时不用回单

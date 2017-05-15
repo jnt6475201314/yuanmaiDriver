@@ -81,19 +81,19 @@
     
     [self.view addSubview:self.suggestTV];
     
-    UILabel * imgTitleLabel = [UILabel labelWithFrame:CGRectMake(30*widthScale,_bgViewOfBtn.bottom + 220*heightScale, _bgViewOfBtn.width, 20) text:@"附加图片：" font:16 textColor:[UIColor darkTextColor]];
-    [self.view addSubview:imgTitleLabel];
+//    UILabel * imgTitleLabel = [UILabel labelWithFrame:CGRectMake(30*widthScale,_bgViewOfBtn.bottom + 220*heightScale, _bgViewOfBtn.width, 20) text:@"附加图片：" font:16 textColor:[UIColor darkTextColor]];
+//    [self.view addSubview:imgTitleLabel];
+//    
+//    self.tableView.tabViewDataSource = [[NSMutableArray alloc] initWithArray:self.dataSource];
+//    [self.view addSubview:self.tableView];
+//    self.tableView.height = 0;
+//    
+//    [self.view addSubview:self.imageCollectionView];
+//    
+//    UILabel * tipTitleLabel = [UILabel labelWithFrame:CGRectMake(20*widthScale, self.imageCollectionView.bottom+10*heightScale, _bgViewOfBtn.width, 15*heightScale) text:@"（长按图片可进行编辑、双击空白出退出编辑）" font:12*widthScale textColor:[UIColor lightGrayColor]];
+//    [self.view addSubview:tipTitleLabel];
     
-    self.tableView.tabViewDataSource = [[NSMutableArray alloc] initWithArray:self.dataSource];
-    [self.view addSubview:self.tableView];
-    self.tableView.height = 0;
-    
-    [self.view addSubview:self.imageCollectionView];
-    
-    UILabel * tipTitleLabel = [UILabel labelWithFrame:CGRectMake(20*widthScale, self.imageCollectionView.bottom+10*heightScale, _bgViewOfBtn.width, 15*heightScale) text:@"（长按图片可进行编辑、双击空白出退出编辑）" font:12*widthScale textColor:[UIColor lightGrayColor]];
-    [self.view addSubview:tipTitleLabel];
-    
-    _submitButton = [UIButton buttonWithFrame:CGRectMake(screen_width/2-130*widthScale, tipTitleLabel.bottom+40*heightScale, 260*widthScale, 36*heightScale) title:@"提交建议" image:nil target:self action:@selector(submitButtonEvent:)];
+    _submitButton = [UIButton buttonWithFrame:CGRectMake(screen_width/2-130*widthScale, screen_height-76*heightScale, 260*widthScale, 36*heightScale) title:@"提交建议" image:nil target:self action:@selector(submitButtonEvent:)];
     _submitButton.enabled = NO;
     _submitButton.backgroundColor = [UIColor grayColor];
     _submitButton.titleLabel.font = boldSystemFont(16);

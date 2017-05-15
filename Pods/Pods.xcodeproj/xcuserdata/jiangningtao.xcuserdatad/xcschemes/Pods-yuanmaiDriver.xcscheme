@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '798E72A09706A058E2E2DB9394B25875'
+               BlueprintIdentifier = '2557354314B56860219442DFBD6F6CA2'
                BlueprintName = 'Pods-yuanmaiDriver'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libPods-yuanmaiDriver.a'>

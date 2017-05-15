@@ -120,7 +120,7 @@
 #pragma mark UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     //返回item大小
-    return CGSizeMake((screen_width-40)/3, 120);
+    return CGSizeMake(70, 70);
 }
 
 ////返回头视图高度

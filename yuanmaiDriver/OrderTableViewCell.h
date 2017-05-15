@@ -16,4 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *OrderStartingLabel;
 @property (weak, nonatomic) IBOutlet UILabel *OrderDestinationLabel;
 
+@property (weak, nonatomic) IBOutlet UIButton *OrderBtn;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *OrderDestinationLabel_bottom;
 @end

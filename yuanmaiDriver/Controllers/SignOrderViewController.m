@@ -24,12 +24,18 @@
     [super viewDidLoad];
     
     self.titleLabel.text = @"订单签收";
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backHomeVC:) name:@"backHomeVC" object:nil];
     [self showBackBtn];
     [self showRightBtn:CGRectMake(screen_width-75, 24, 70, 36) withFont:systemFont(16) withTitle:@"选择回单" withTitleColor:[UIColor whiteColor]];
     
     [self configUI];
 }
-
+-(void)backHomeVC:(NSNotification *)not{
+    NSLog(@"not.user==%@",not.userInfo);
+    if ([not.userInfo[@"key"] isEqualToString:@"1"]) {
+        [self backClick:nil];
+    }
+}
 - (void)configUI
 {
     bgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 64, screen_width, screen_height)];

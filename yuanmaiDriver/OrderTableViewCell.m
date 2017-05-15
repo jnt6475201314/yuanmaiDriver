@@ -13,6 +13,10 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    [self.OrderBtn setBackgroundColor:red_color];
+    self.OrderBtn.layer.cornerRadius = 6;
+    self.OrderBtn.clipsToBounds = YES;
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

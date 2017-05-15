@@ -17,6 +17,7 @@ PODS:
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
+  - IQKeyboardManager (4.0.8)
   - JKCountDownButton (1.0.0)
   - JSONModel (1.0.2)
   - libqrencode (3.4.2)
@@ -35,6 +36,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
   - FMDB (~> 2.6.2)
+  - IQKeyboardManager
   - JKCountDownButton (~> 1.0.0)
   - JSONModel (~> 1.0.2)
   - libqrencode (~> 3.4.2)
@@ -50,6 +52,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
+  IQKeyboardManager: 1a8189fa153bf09044355ee0ad36826f6767e7f7
   JKCountDownButton: 7b30571da56af2e52272a6974413f4a0c83a5e94
   JSONModel: 6ffcb4ffa3659c9e9a2e5d45d6c7705bab187c03
   libqrencode: 43dc34b89af83ea4b07c409cd8e09c87aa3a1c9f
@@ -62,6 +65,6 @@ SPEC CHECKSUMS:
   UMengSocial: aba7296602310385114d82c255539a7bef3b7ab0
   ZBarSDK: 4c1b5daeb7d6cc67dc9355e690af0230a661f6ec
 
-PODFILE CHECKSUM: e18357239c386dd80cf085874b5cd2c50249eed7
+PODFILE CHECKSUM: ad304a26846a9050ff1ab5edc7367c1635c66359
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.1

@@ -30,6 +30,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [NSThread sleepForTimeInterval:1];//设置启动页面时间
+    
+    [UserDefaults setObject:@"1" forKey:@"refresh"];
     [self configLocation];  // 集成位置
     [self configAPNsWithOptions:launchOptions]; // 注册通知
     [application setApplicationIconBadgeNumber:0];//小红点清0操作
@@ -88,7 +90,7 @@
 {
     if ([UserDefaults objectForKey:@"data"][@"driver_id"] && [UserDefaults objectForKey:LOCATION] && [GetLocationDict objectForKey:@"longitude"] && [GetLocationDict objectForKey:@"latitude"]) {
         NSDictionary * locationParams = @{@"sid":GETDriver_ID,@"mobile":[UserDefaults objectForKey:@"data"][@"user_name"], @"longitude":GetLongitude, @"latitude":GetLatitude};
-        NSLog(@"%@?%@", API_UPLoadLocation_URL, locationParams);
+        
         [NetRequest postDataWithUrlString:API_UPLoadLocation_URL withParams:locationParams success:^(id data) {
             
             NSLog(@"位置信息上传：data：%@", data);
@@ -230,12 +232,6 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     }
     completionHandler(nil); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以选择设置
     
-    self.bgLocation = [[BGLogation alloc]init];
-    [self.bgLocation startLocation];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self log];
-    });
-//    [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(log) userInfo:nil repeats:YES];
 }
 
 // iOS 10 Support
@@ -247,7 +243,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
         [JPUSHService handleRemoteNotification:userInfo];
     }
     completionHandler();  // 系统要求执行这个方法
-    [MYFactoryManager uploadMyLocationToService];
+//    [MYFactoryManager uploadMyLocationToService];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
@@ -384,3 +380,5 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 }
 
 @end
+
+

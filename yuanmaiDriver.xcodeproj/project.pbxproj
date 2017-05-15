@@ -122,6 +122,11 @@
 		FD6017CF1E40C728005E4BA7 /* OrderListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD6017CE1E40C728005E4BA7 /* OrderListModel.m */; };
 		FD76D0671E6A84BB00A19C23 /* PJRSignatureView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD76D0661E6A84BB00A19C23 /* PJRSignatureView.m */; };
 		FD76D06A1E6A86A600A19C23 /* UploadReceiptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD76D0691E6A86A600A19C23 /* UploadReceiptViewController.m */; };
+		FD96707D1EC94D7C00C59763 /* ServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD96707C1EC94D7C00C59763 /* ServiceViewController.m */; };
+		FD9670801EC9501200C59763 /* IWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD96707F1EC9501200C59763 /* IWViewController.m */; };
+		FD9670831EC9533F00C59763 /* ServiceCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD9670821EC9533F00C59763 /* ServiceCollectionView.m */; };
+		FD9670871EC956B800C59763 /* ServiceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD9670851EC956B800C59763 /* ServiceCollectionViewCell.m */; };
+		FD9670881EC956B800C59763 /* ServiceCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD9670861EC956B800C59763 /* ServiceCollectionViewCell.xib */; };
 		FD9724D21E5D2EAC00CDF16D /* BGLogation.m in Sources */ = {isa = PBXBuildFile; fileRef = FD9724CF1E5D2EAC00CDF16D /* BGLogation.m */; };
 		FD9724D31E5D2EAC00CDF16D /* BGTask.m in Sources */ = {isa = PBXBuildFile; fileRef = FD9724D11E5D2EAC00CDF16D /* BGTask.m */; };
 		FD9F15601E7A298A0030C6D8 /* MHTransformCorrdinate.m in Sources */ = {isa = PBXBuildFile; fileRef = FD9F155F1E7A298A0030C6D8 /* MHTransformCorrdinate.m */; };
@@ -129,6 +134,9 @@
 		FDCB79341E3A318A00CE57CE /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDCB79331E3A318A00CE57CE /* HomeViewController.m */; };
 		FDDE77F51E41E893006EE76F /* DetailOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDDE77F41E41E893006EE76F /* DetailOrderViewController.m */; };
 		FDDE77F81E420624006EE76F /* SignOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDDE77F71E420624006EE76F /* SignOrderViewController.m */; };
+		FDFBA1E41EC6F55D00767B4D /* TransportTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = FDFBA1E31EC6F55D00767B4D /* TransportTableView.m */; };
+		FDFBA1E81EC6F6F500767B4D /* TransportTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDFBA1E61EC6F6F500767B4D /* TransportTableViewCell.m */; };
+		FDFBA1E91EC6F6F500767B4D /* TransportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDFBA1E71EC6F6F500767B4D /* TransportTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -360,6 +368,15 @@
 		FD76D0661E6A84BB00A19C23 /* PJRSignatureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PJRSignatureView.m; sourceTree = "<group>"; };
 		FD76D0681E6A86A600A19C23 /* UploadReceiptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadReceiptViewController.h; sourceTree = "<group>"; };
 		FD76D0691E6A86A600A19C23 /* UploadReceiptViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadReceiptViewController.m; sourceTree = "<group>"; };
+		FD96707B1EC94D7C00C59763 /* ServiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceViewController.h; sourceTree = "<group>"; };
+		FD96707C1EC94D7C00C59763 /* ServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceViewController.m; sourceTree = "<group>"; };
+		FD96707E1EC9501200C59763 /* IWViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWViewController.h; sourceTree = "<group>"; };
+		FD96707F1EC9501200C59763 /* IWViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWViewController.m; sourceTree = "<group>"; };
+		FD9670811EC9533F00C59763 /* ServiceCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceCollectionView.h; sourceTree = "<group>"; };
+		FD9670821EC9533F00C59763 /* ServiceCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceCollectionView.m; sourceTree = "<group>"; };
+		FD9670841EC956B800C59763 /* ServiceCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceCollectionViewCell.h; sourceTree = "<group>"; };
+		FD9670851EC956B800C59763 /* ServiceCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceCollectionViewCell.m; sourceTree = "<group>"; };
+		FD9670861EC956B800C59763 /* ServiceCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServiceCollectionViewCell.xib; sourceTree = "<group>"; };
 		FD9724CE1E5D2EAC00CDF16D /* BGLogation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGLogation.h; sourceTree = "<group>"; };
 		FD9724CF1E5D2EAC00CDF16D /* BGLogation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGLogation.m; sourceTree = "<group>"; };
 		FD9724D01E5D2EAC00CDF16D /* BGTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGTask.h; sourceTree = "<group>"; };
@@ -374,6 +391,11 @@
 		FDDE77F41E41E893006EE76F /* DetailOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailOrderViewController.m; sourceTree = "<group>"; };
 		FDDE77F61E420624006EE76F /* SignOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignOrderViewController.h; sourceTree = "<group>"; };
 		FDDE77F71E420624006EE76F /* SignOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignOrderViewController.m; sourceTree = "<group>"; };
+		FDFBA1E21EC6F55D00767B4D /* TransportTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransportTableView.h; sourceTree = "<group>"; };
+		FDFBA1E31EC6F55D00767B4D /* TransportTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransportTableView.m; sourceTree = "<group>"; };
+		FDFBA1E51EC6F6F500767B4D /* TransportTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransportTableViewCell.h; sourceTree = "<group>"; };
+		FDFBA1E61EC6F6F500767B4D /* TransportTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransportTableViewCell.m; sourceTree = "<group>"; };
+		FDFBA1E71EC6F6F500767B4D /* TransportTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransportTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -496,6 +518,7 @@
 				4C940D03BDD29F81ED8BB04C /* Frameworks */,
 			);
 			sourceTree = "<group>";
+			wrapsLines = 0;
 		};
 		FD44EEA61E39852E00AD55E0 /* Products */ = {
 			isa = PBXGroup;
@@ -682,6 +705,11 @@
 			children = (
 				FD44EF0B1E3989A200AD55E0 /* BaseCollectionView.h */,
 				FD44EF0C1E3989A200AD55E0 /* BaseCollectionView.m */,
+				FD9670811EC9533F00C59763 /* ServiceCollectionView.h */,
+				FD9670821EC9533F00C59763 /* ServiceCollectionView.m */,
+				FD9670841EC956B800C59763 /* ServiceCollectionViewCell.h */,
+				FD9670851EC956B800C59763 /* ServiceCollectionViewCell.m */,
+				FD9670861EC956B800C59763 /* ServiceCollectionViewCell.xib */,
 			);
 			path = CollectionView;
 			sourceTree = "<group>";
@@ -769,6 +797,11 @@
 				FD09B13C1E447D980084EE5F /* SettingTableView.m */,
 				FD6017C51E40C691005E4BA7 /* OrderTableView.h */,
 				FD6017C61E40C691005E4BA7 /* OrderTableView.m */,
+				FDFBA1E21EC6F55D00767B4D /* TransportTableView.h */,
+				FDFBA1E31EC6F55D00767B4D /* TransportTableView.m */,
+				FDFBA1E51EC6F6F500767B4D /* TransportTableViewCell.h */,
+				FDFBA1E61EC6F6F500767B4D /* TransportTableViewCell.m */,
+				FDFBA1E71EC6F6F500767B4D /* TransportTableViewCell.xib */,
 				FD6017C71E40C691005E4BA7 /* OrderTableViewCell.h */,
 				FD6017C81E40C691005E4BA7 /* OrderTableViewCell.m */,
 				FD6017C91E40C691005E4BA7 /* OrderTableViewCell.xib */,
@@ -963,6 +996,10 @@
 			children = (
 				FDCB79321E3A318A00CE57CE /* HomeViewController.h */,
 				FDCB79331E3A318A00CE57CE /* HomeViewController.m */,
+				FD96707E1EC9501200C59763 /* IWViewController.h */,
+				FD96707F1EC9501200C59763 /* IWViewController.m */,
+				FD96707B1EC94D7C00C59763 /* ServiceViewController.h */,
+				FD96707C1EC94D7C00C59763 /* ServiceViewController.m */,
 				FD44EEFC1E39894900AD55E0 /* MineViewController.h */,
 				FD44EEFD1E39894900AD55E0 /* MineViewController.m */,
 				FDDE77F31E41E893006EE76F /* DetailOrderViewController.h */,
@@ -1107,7 +1144,9 @@
 				FD44EF3B1E3989A300AD55E0 /* AddressChoicePickerView.xib in Resources */,
 				FD6017BF1E3F29D3005E4BA7 /* carkey.json in Resources */,
 				FD44EEB31E39852E00AD55E0 /* Main.storyboard in Resources */,
+				FD9670881EC956B800C59763 /* ServiceCollectionViewCell.xib in Resources */,
 				FD44EF711E3989FE00AD55E0 /* page_gray.png in Resources */,
+				FDFBA1E91EC6F6F500767B4D /* TransportTableViewCell.xib in Resources */,
 				FD09B1291E4350F20084EE5F /* SuggestionTableViewCell.xib in Resources */,
 				FD44EF721E3989FE00AD55E0 /* page_white.png in Resources */,
 				FD6017CC1E40C691005E4BA7 /* OrderTableViewCell.xib in Resources */,
@@ -1158,7 +1197,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		9FB249BD368B2EAA9E85DD01 /* [CP] Copy Pods Resources */ = {
@@ -1197,6 +1236,7 @@
 				FD44EF3A1E3989A300AD55E0 /* AddressChoicePickerView.m in Sources */,
 				FD09B1111E42C7E90084EE5F /* PersonalTableViewCell.m in Sources */,
 				FD44EF9F1E398CAE00AD55E0 /* MyQRCodeView.m in Sources */,
+				FD9670871EC956B800C59763 /* ServiceCollectionViewCell.m in Sources */,
 				FD09B1221E4350BA0084EE5F /* SuggestionViewController.m in Sources */,
 				FD44EEF11E3988E600AD55E0 /* LoadingViewController.m in Sources */,
 				FD44EF3F1E3989A300AD55E0 /* LeftPicBtn.m in Sources */,
@@ -1214,6 +1254,7 @@
 				FD44EFAD1E399B5200AD55E0 /* NetRequest.m in Sources */,
 				FD44EFB01E399C5C00AD55E0 /* LoginViewController.m in Sources */,
 				FD44EF081E39896300AD55E0 /* BaseModel.m in Sources */,
+				FD9670831EC9533F00C59763 /* ServiceCollectionView.m in Sources */,
 				FD6017C21E3F29D3005E4BA7 /* ProvincePickView.m in Sources */,
 				FD09B1281E4350F20084EE5F /* SuggestionTableViewCell.m in Sources */,
 				FD44EF3C1E3989A300AD55E0 /* AreaObject.m in Sources */,
@@ -1235,6 +1276,7 @@
 				FD44EF051E39894900AD55E0 /* SnatchViewController.m in Sources */,
 				FD09B1211E4350BA0084EE5F /* SafeSettingViewController.m in Sources */,
 				FD44EF001E39894900AD55E0 /* BuycarViewController.m in Sources */,
+				FD9670801EC9501200C59763 /* IWViewController.m in Sources */,
 				FDA57AF51E711C1F0089C7F7 /* MyInfoViewController.m in Sources */,
 				FD44EFA01E398CAE00AD55E0 /* QRCodeGenerator.m in Sources */,
 				FD9724D31E5D2EAC00CDF16D /* BGTask.m in Sources */,
@@ -1246,6 +1288,7 @@
 				FD44EF431E3989A300AD55E0 /* SelectedView.m in Sources */,
 				FD9724D21E5D2EAC00CDF16D /* BGLogation.m in Sources */,
 				FD44EFA71E398E2A00AD55E0 /* ScanOrderViewController.m in Sources */,
+				FDFBA1E41EC6F55D00767B4D /* TransportTableView.m in Sources */,
 				FD44EF3E1E3989A300AD55E0 /* DeleteLabel.m in Sources */,
 				FD44EF751E3989FE00AD55E0 /* WPHotspotLabel.m in Sources */,
 				FD44EF391E3989A300AD55E0 /* BasePickerView.m in Sources */,
@@ -1253,6 +1296,7 @@
 				FD09B1331E4351EB0084EE5F /* UIViewController+XHPhoto.m in Sources */,
 				FDDE77F81E420624006EE76F /* SignOrderViewController.m in Sources */,
 				FD44EF481E3989A300AD55E0 /* BrowerView.m in Sources */,
+				FD96707D1EC94D7C00C59763 /* ServiceViewController.m in Sources */,
 				FD76D0671E6A84BB00A19C23 /* PJRSignatureView.m in Sources */,
 				FD44EF411E3989A300AD55E0 /* MySelectView.m in Sources */,
 				FD44EF731E3989FE00AD55E0 /* SMPageControl.m in Sources */,
@@ -1273,6 +1317,7 @@
 				FD44EF011E39894900AD55E0 /* DiscoveryViewController.m in Sources */,
 				FD09B12E1E43518C0084EE5F /* ImageCollectionViewCell.m in Sources */,
 				FD6017C31E3F29D3005E4BA7 /* ProvinceView.m in Sources */,
+				FDFBA1E81EC6F6F500767B4D /* TransportTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1348,7 +1393,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: zhu youhai (5ZLH4SJD8E)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: zhu youhai (5ZLH4SJD8E)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1395,7 +1441,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: zhu youhai (5ZLH4SJD8E)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: zhu youhai (5ZLH4SJD8E)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1420,7 +1467,10 @@
 			baseConfigurationReference = D87B97B4FE915CD9FA2055DF /* Pods-yuanmaiDriver.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = yuanmaiDriver/yuanmaiDriver.entitlements;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 5ZLH4SJD8E;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1444,7 +1494,10 @@
 			baseConfigurationReference = DC11203C1F8EA0625D6C39B3 /* Pods-yuanmaiDriver.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = yuanmaiDriver/yuanmaiDriver.entitlements;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 5ZLH4SJD8E;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

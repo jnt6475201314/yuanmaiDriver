@@ -91,4 +91,42 @@
     
 }
 
++ (void)AF_RegisterByPostWithUrlString:(NSString *)urlString params:(NSDictionary *)params image:(UIImage *)image success:(SuccessBlock)successBlock fail:(FailBlock)failBlock{
+    AFHTTPSessionManager * manager = [self AFManager];
+    [manager POST:urlString parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        
+        NSString *imageName = [NSString stringWithFormat:@"%@.png",@"photo"];
+        UIImage * image1 = image;
+        NSData *data =UIImagePNGRepresentation(image1);
+        
+        /******** 1.上传已经获取到的img *******/
+        // 把图片转换成data
+        //        NSData *data = UIImagePNGRepresentation(image);
+        // 拼接数据到请求题中
+        [formData appendPartWithFileData:data name:@"receipt" fileName:@"headimage.png" mimeType:@"image/png"];
+        /******** 2.通过路径上传沙盒或系统相册里的图片 *****/
+        //        [formData appendPartWithFileURL:[NSURL fileURLWithPath:@"文件地址"] name:@"file" fileName:@"1234.png" mimeType:@"application/octet-stream" error:nil];
+        NSLog(@"formdata==%@",formData);
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+        // 打印上传进度
+        NSLog(@"%lf",1.0 *uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        id jsonObj = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+        NSLog(@"%@", jsonObj);
+        NSLog(@"%@", responseObject);
+        NSString *responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"responseString: %@", responseString);
+        NSMutableString * str = [NSMutableString stringWithString:responseString];
+        NSString * dicStr = [NSString stringWithFormat:@"%@}",[[str componentsSeparatedByString:@"}"]  firstObject]];
+        NSLog(@"responseStr: %@", str);
+        successBlock(jsonObj);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        failBlock(error.localizedDescription);
+    }];
+    
+}
+
 @end

@@ -15,7 +15,9 @@
     if (self) {
         self.delegate = self;
         self.dataSource = self;
-        cellHeight = height;
+        self.estimatedRowHeight = 200;  //  随便设个不那么离谱的值
+        self.rowHeight = UITableViewAutomaticDimension;
+        //cellHeight = height;
         [self addMJRefresh];
     }
     return self;
@@ -73,17 +75,17 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 10;
+    return 5;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return cellHeight;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return cellHeight;
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 10;
+    return 5;
 }
 
 -  (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -108,6 +110,10 @@
         _tabViewDataSource = [[NSMutableArray alloc] init];
     }
     return _tabViewDataSource;
+}
+
+- (void)removeData{
+    [self.tabViewDataSource removeAllObjects];
 }
 
 @end

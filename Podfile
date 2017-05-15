@@ -13,4 +13,5 @@ pod 'ZBarSDK','~>1.3.1'
 pod 'JSONModel', '~>1.0.2'
 pod 'JKCountDownButton', '~>1.0.0'
 pod 'UMengSocial', '~> 4.3'
+pod 'IQKeyboardManager'
 end

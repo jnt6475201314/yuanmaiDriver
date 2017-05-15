@@ -188,6 +188,7 @@
                 NSLog(@"登陆成功");
                 [self showTipView:@"登录成功！"];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self postTel:data];
                     [self saveUserInfo:data];   // 存储用户信息
                 });
             });
@@ -205,6 +206,18 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self showTipView:@"登录失败，登录信息是否有误或网络出错"];
         });
+    }];
+}
+
+- (void)postTel:(NSDictionary *)data{
+    
+    NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithCapacity:0];
+    NSDictionary * user_info = data[@"data"];
+    [dic setObject:user_info[@"user_name"] forKey:@"mobile"];
+    [NetRequest postDataWithUrlString:API_LOGIN_TEL_URL withParams:dic success:^(id data) {
+        
+    } fail:^(NSString *errorDes) {
+        
     }];
 }
 

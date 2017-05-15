@@ -35,4 +35,8 @@
 //按钮选择
 - (void)selectBtnClick:(UIButton *)button;
 
+- (void)changeFristBtnTitle:(NSString *)string;
+
+- (void)changeSecoundBtnTitle:(NSString *)string;
+
 @end

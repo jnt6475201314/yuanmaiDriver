@@ -17,6 +17,8 @@
     NSString * _state;
     
     UIButton * _deleteButton;   // 删除按钮
+    
+    BOOL isfinish;
 }
 @property (nonatomic, strong) UIWebView * webView;
 
@@ -60,7 +62,7 @@
     
     [self showHUD:@"数据加载中，请稍候。。。" isDim:YES];
 
-    _actionButton = [UIButton buttonWithFrame:CGRectMake(screen_width/2 - 60, screen_height - 42, 120, 40) title:@"" image:@"" target:self action:@selector(actionButtonEvent:)];
+    _actionButton = [UIButton buttonWithFrame:CGRectMake(screen_width/2 - 60, screen_height - 42, 120, 40) title:@"已完成" image:@"" target:self action:@selector(actionButtonEvent:)];
     _actionButton.backgroundColor = red_color;
     _actionButton.layer.cornerRadius = 10;
     _actionButton.clipsToBounds = YES;
@@ -88,7 +90,8 @@
                     _deleteButton.hidden = NO;
                 }else
                 {
-                    [_actionButton setTitle:@"客户签收" forState:UIControlStateNormal];
+                    //[_actionButton setTitle:@"客户签收" forState:UIControlStateNormal];
+                    [_actionButton removeFromSuperview];
                     [_params setObject:@"4" forKey:@"state"];
                 }
             }else if ([_state isEqualToString:@"运输中"]){
@@ -138,14 +141,15 @@
 //        }];
 //
 //    }else
-    if ([actionBtn.currentTitle isEqualToString:@"客户签收"]) {
-        SignOrderViewController * signOrderVC = [[SignOrderViewController alloc] init];
-        signOrderVC.orderModel = self.orderModel;
-        NSLog(@"%@", signOrderVC.orderModel);
-        [self presentViewController:signOrderVC animated:YES completion:nil];
-    }
-    else{
+//    if ([actionBtn.currentTitle isEqualToString:@"客户签收"]) {
+//        SignOrderViewController * signOrderVC = [[SignOrderViewController alloc] init];
+//        signOrderVC.orderModel = self.orderModel;
+//        NSLog(@"%@", signOrderVC.orderModel);
+//        [self presentViewController:signOrderVC animated:YES completion:nil];
+//    }
+//    else{
         [self showHUD:@"正在操作，请稍候。。。" isDim:YES];
+        [_params setObject:@"2" forKey:@"state"];
         NSLog(@"%@?%@", API_OrderAction_URL, _params);
         [NetRequest postDataWithUrlString:API_OrderAction_URL withParams:_params success:^(id data) {
             
@@ -155,6 +159,7 @@
                     [self showTipView:@"操作成功！"];
                     _actionButton.backgroundColor = [UIColor lightGrayColor];
                     _actionButton.enabled = NO;
+                    isfinish = YES;
                 });
             }else{
                 NSLog(@"操作失败！%@", data[@"message"]);
@@ -171,7 +176,7 @@
                 [self showTipView:@"操作失败！请检查网络状态或稍候重试。"];
             });
         }];
-    }
+    //}
 }
 
 - (void)deleteButtonEvent
@@ -230,6 +235,12 @@
         [self dismissViewControllerAnimated:YES completion:nil];
     }else if([self.upVCTitle isEqualToString:@"订单详情"])
     {
+        if (isfinish) {
+            NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithCapacity:0];
+            [dic setValue:[NSNumber numberWithInteger:self.sectionNumber] forKey:@"sectionNumber"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"deleteSection" object:nil userInfo:dic];
+        }
+        [UserDefaults setObject:@"0" forKey:@"refresh"];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }

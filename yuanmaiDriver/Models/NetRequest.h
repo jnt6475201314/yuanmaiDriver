@@ -26,4 +26,6 @@ typedef void(^HideHUDBlock)();
 /* 检查是否异地登陆的操作 */
 + (void)checkOtherPlaceLoginWithUrlString:(NSString *)urlString withParams:(NSDictionary *)params success:(SuccessBlock)successBlock fail:(FailBlock)failBloc;
 
+
++ (void)AF_RegisterByPostWithUrlString:(NSString *)urlString params:(NSDictionary *)params image:(UIImage *)image success:(SuccessBlock)successBlock fail:(FailBlock)failBlock;
 @end

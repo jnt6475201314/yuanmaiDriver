@@ -13,6 +13,7 @@
     UIView *_moveView;
     UIButton *_lastBtn;
     float _btnWidth;
+    NSMutableArray * btn_array;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame withTitleArray:(NSArray *)titleArr{
@@ -20,6 +21,7 @@
     if (self) {
         _btnWidth = self.width/titleArr.count;
         _titleArray = titleArr;
+        btn_array = [NSMutableArray arrayWithCapacity:0];
         [self _initView];
     }
     return self;
@@ -96,9 +98,12 @@
             button.selected = YES;
             _lastBtn = button;
         }
+        [btn_array addObject:button];
     }
     float width = [MYFactoryManager widthForString:_lastBtn.titleLabel.text fontSize:_lastBtn.titleLabel.font.pointSize andHeight:self.height]+5;
-    _moveView = [[UIView alloc] initWithFrame:CGRectMake((_lastBtn.tag-100)*_btnWidth+(_btnWidth-width)/2, self.height/2+13, width, 1)];
+    //移动的线条
+    //_moveView = [[UIView alloc] initWithFrame:CGRectMake((_lastBtn.tag-100)*_btnWidth+(_btnWidth-width)/2, self.height/2+13, width, 1)];
+    _moveView = [[UIView alloc] initWithFrame:CGRectMake((_lastBtn.tag-100)*_btnWidth, self.height-1, self.width/_titleArray.count, 1)];
     _moveView.backgroundColor = [UIColor blackColor];
     [self addSubview:_moveView];
     
@@ -110,7 +115,8 @@
     
     float width = [MYFactoryManager widthForString:_lastBtn.titleLabel.text fontSize:_lastBtn.titleLabel.font.pointSize andHeight:self.height]+5;
     [UIView animateWithDuration:0.5f animations:^{
-        _moveView.frame = CGRectMake((_lastBtn.tag-100)*_btnWidth+(_btnWidth-width)/2, _lastBtn.titleLabel.bottom+2, width, 1);
+        //_moveView.frame = CGRectMake((_lastBtn.tag-100)*_btnWidth+(_btnWidth-width)/2, _lastBtn.titleLabel.bottom+2, width, 1);
+        _moveView.frame = CGRectMake((_lastBtn.tag-100)*_btnWidth, _lastBtn.bottom-1, self.width/_titleArray.count, 1);
     }];
 }
 
@@ -125,6 +131,16 @@
     if ([self.selectDelegate respondsToSelector:@selector(selectedBtnSendSelectIndex:)]) {
         [self.selectDelegate selectedBtnSendSelectIndex:(int)button.tag-100];
     }
+}
+
+- (void)changeFristBtnTitle:(NSString *)string{
+    UIButton * button = btn_array[0];
+    [button setTitle:string forState:UIControlStateNormal];
+}
+
+- (void)changeSecoundBtnTitle:(NSString *)string{
+    UIButton * button = btn_array[1];
+    [button setTitle:string forState:UIControlStateNormal];
 }
 
 @end

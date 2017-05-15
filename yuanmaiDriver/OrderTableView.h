@@ -8,6 +8,14 @@
 
 #import "BaseTableView.h"
 
+@protocol OrderDelegate <NSObject>
+
+-(void)OrderBtnClick:(id)model;
+
+@end
+
 @interface OrderTableView : BaseTableView
+
+@property (nonatomic, weak)id<OrderDelegate> Btndelegate;
 
 @end

@@ -62,16 +62,21 @@
 
 - (void)uploadPhoto
 {
-    NSData * imgData = UIImageJPEGRepresentation(imageView.image, 1.0f);
-    NSString * image64 = [imgData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
     [self showHUD:@"正在上传回单，请稍候。。。" isDim:YES];
-    NSDictionary * params = @{@"driver_id":GETDriver_ID, @"gid":self.orderModel.gid, @"receipt":image64, @"state":@"4"};
-    [NetRequest postDataWithUrlString:API_OrderAction_URL withParams:params success:^(id data) {
-        NSLog(@"%@", data);
+    NSDictionary * params = @{@"driver_id":GETDriver_ID, @"gid":self.orderModel.gid, @"state":@"4"};
+
+    NSLog(@"API_OrderUploadReceipt_URL==%@",API_OrderUploadReceipt_URL);
+    NSLog(@"params==%@",params);
+    [NetRequest AF_RegisterByPostWithUrlString:API_OrderUploadReceipt_URL params:params image:imageView.image success:^(id data) {
         [self hideHUD];
         if ([data[@"code"] isEqualToString:@"1"]) {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self showTipView:@"回单上传成功！"];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"backHomeVC" object:nil userInfo:@{@"key":@"1"}];
+                });
+                
             });
         }else{
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -84,6 +89,7 @@
             [self showTipView:@"上传回单失败！请检查当前网络状态或稍后重试！"];
         });
     }];
+    
 }
 
 - (void)savePhoto

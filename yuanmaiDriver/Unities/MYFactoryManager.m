@@ -325,7 +325,7 @@
 
 
 + (BOOL)phoneNum:(NSString *) textString {
-    NSString *number = @"^((13[0-9])|(15[^4,\\D])|(18[0,0-9]))\\d{8}$";
+    NSString *number = @"^((13[0-9])|(15[^4,\\D])|(18[0,0-9]))|(17[0,[0-9]])\\d{8}$";
     NSPredicate *numberPre = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",number];
     return [numberPre evaluateWithObject:textString];
 }

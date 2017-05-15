@@ -36,4 +36,6 @@
 /*上拉加载更多数据请求*/
 - (void)footerRefreshingEvent;
 
+- (void)removeData;
+
 @end
