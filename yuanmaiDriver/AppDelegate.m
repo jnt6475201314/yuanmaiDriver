@@ -28,7 +28,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+    NSLog(@"1");
     [NSThread sleepForTimeInterval:1];//设置启动页面时间
     
     [UserDefaults setObject:@"1" forKey:@"refresh"];
